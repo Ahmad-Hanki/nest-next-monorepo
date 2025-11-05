@@ -6,13 +6,3 @@
  We detected multiple lockfiles and selected the directory of C:\Users\LENOVO\package-lock.json as the root directory.
  To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
    See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
- Detected additional lockfiles: 
-   * C:\Users\LENOVO\Desktop\nest-next-blog\apps\front\package-lock.json
-   * C:\Users\LENOVO\Desktop\nest-next-blog\package-lock.json
-
-   ▲ Next.js 16.0.1 (Turbopack)
-   - Local:        http://localhost:3000
-   - Network:      http://192.168.1.102:3000
-
- ✓ Starting...
- ✓ Ready in 1093ms

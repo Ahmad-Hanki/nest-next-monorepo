@@ -27,4 +27,7 @@ export class User {
 
   @Field(() => [Comment], { nullable: 'itemsAndList' })
   comments: Comment[];
+
+  @Field({ nullable: true })
+  accessToken?: string;
 }

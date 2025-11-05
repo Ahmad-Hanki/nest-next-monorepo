@@ -3,3 +3,13 @@
 - npm i --save-dev turbo
 then turbo.josn 
 change package.json
+
+
+npm i class-validator // for validation
+npm i class-transformer // just added it
+npm i argon2 // for hashing the password
+npm i @nestjs/jwt // jwt
+
+openssl rand -hex 32 // chatgpt can generate it
+
+npm i @nestjs/config // enable it in app module

@@ -11,6 +11,7 @@ type User {
   createdAt: DateTime!
   posts: [Post]
   comments: [Comment]
+  accessToken: String
 }
 
 """
@@ -49,4 +50,22 @@ type Post {
 
 type Query {
   posts: [Post!]!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  signIn(signInInput: SignInInput!): User!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  password: String!
+  bio: String
+  avatar: String
+}
+
+input SignInInput {
+  email: String!
+  password: String!
 }

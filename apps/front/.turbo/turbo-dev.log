@@ -354,3 +354,808 @@
  GET / 200 in 153ms (compile: 72ms, render: 81ms)
  GET / 200 in 34ms (compile: 4ms, render: 30ms)
  GET / 200 in 149ms (compile: 73ms, render: 76ms)
+ GET / 200 in 35ms (compile: 4ms, render: 31ms)
+ ✓ Compiled in 32ms
+ GET / 200 in 114ms (compile: 66ms, render: 48ms)
+ GET / 200 in 36ms (compile: 6ms, render: 29ms)
+ GET / 200 in 89ms (compile: 51ms, render: 39ms)
+ GET / 200 in 29ms (compile: 8ms, render: 22ms)
+ GET / 200 in 137ms (compile: 54ms, render: 84ms)
+ GET / 200 in 31ms (compile: 4ms, render: 27ms)
+ ✓ Compiled in 41ms
+ ⨯ ReferenceError: sdk is not defined
+    at Home (app\page.tsx:5:14)
+  3 |
+  4 | export default  async function Home() {
+> 5 |   const {} = sdk
+    |              ^
+  6 |   return (
+  7 |     <main >
+  8 |       <Hero/> {
+  digest: '2855888367'
+}
+ GET / 200 in 239ms (compile: 117ms, render: 121ms)
+ ⨯ TypeError: {imported module ./Desktop/nest-next-blog/apps/front/graphql/xior.ts}.sdkFetcher.return is not a function
+    at Home (app\page.tsx:7:9)
+   5 | export default  async function Home() {
+   6 |   const {} = sdkFetcher.
+>  7 |   return (
+     |         ^
+   8 |     <main >
+   9 |       <Hero/>
+  10 |     </main> {
+  digest: '1342212887'
+}
+ GET / 500 in 1046ms (compile: 118ms, render: 928ms)
+ ✓ Compiled in 36ms
+ GET / 200 in 270ms (compile: 102ms, render: 168ms)
+ ✓ Compiled in 60ms
+ GET / 200 in 155ms (compile: 62ms, render: 93ms)
+❌ GraphQL Error: {
+  errors: [
+    {
+      message: 'POST body missing, invalid Content-Type, or JSON object has no keys.',
+      extensions: [Object]
+    }
+  ]
+}
+Error [XiorError]: Request failed with status code 400
+    at Generator.next (<anonymous>) {
+  request: [Object],
+  config: [Object],
+  response: [Object]
+}
+ ⨯ unhandledRejection: Error [XiorError]: Request failed with status code 400
+    at Generator.next (<anonymous>) {
+  request: [Object],
+  config: [Object],
+  response: [Object]
+}
+ ⨯ unhandledRejection:  Error [XiorError]: Request failed with status code 400
+    at Generator.next (<anonymous>) {
+  request: [Object],
+  config: [Object],
+  response: [Object]
+}
+ ✓ Compiled in 53ms
+ ⨯ ReferenceError: sdk is not defined
+    at Home (app\page.tsx:5:18)
+  3 |
+  4 | export default  async function Home() {
+> 5 |   const {data} = await sdk
+    |                  ^
+  6 |   return (
+  7 |     <main >
+  8 |       <Hero/> {
+  digest: '475379304'
+}
+ ⨯ ReferenceError: sdk is not defined
+    at Home (app\page.tsx:5:18)
+  3 |
+  4 | export default  async function Home() {
+> 5 |   const {data} = await sdk
+    |                  ^
+  6 |   return (
+  7 |     <main >
+  8 |       <Hero/> {
+  digest: '475379304'
+}
+ GET / 200 in 260ms (compile: 72ms, render: 188ms)
+ GET / 500 in 131ms (compile: 4ms, render: 128ms)
+ ⨯ TypeError: {imported module ./Desktop/nest-next-blog/apps/front/graphql/generated/fetchers.ts}.getSdk.return is not a function
+    at Home (app\page.tsx:7:9)
+   5 | export default  async function Home() {
+   6 |   const {data} = await getSdk.
+>  7 |   return (
+     |         ^
+   8 |     <main >
+   9 |       <Hero/>
+  10 |     </main> {
+  digest: '3917795113'
+}
+ GET / 500 in 204ms (compile: 57ms, render: 147ms)
+ ✓ Compiled in 44ms
+ ⨯ ReferenceError: getSdk is not defined
+    at Home (app\page.tsx:5:18)
+  3 |
+  4 | export default  async function Home() {
+> 5 |   const {data} = await getSdk
+    |                  ^
+  6 |   return (
+  7 |     <main >
+  8 |       <Hero/> {
+  digest: '3870244168'
+}
+ GET / 500 in 298ms (compile: 93ms, render: 204ms)
+ ⨯ ReferenceError: sdk is not defined
+    at Home (app\page.tsx:5:16)
+  3 |
+  4 | export default async function Home() {
+> 5 |   const data = await sdk.ListEmployerFavouriteWorkers(
+    |                ^
+  6 |     {},
+  7 |     { revalidate: 60 * 60, tags: ["employer-favorites"] }
+  8 |   ); {
+  digest: '1435459745'
+}
+ GET / 500 in 276ms (compile: 98ms, render: 178ms)
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:3:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m"next/image"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 6 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:3:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m"next/image"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 6 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:3:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m"next/image"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 6 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:3:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m"next/image"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 6 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:3:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m"next/image"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 6 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:3:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m"next/image"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 6 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:3:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m"next/image"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 6 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:3:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m"next/image"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 6 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:3:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m"next/image"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 6 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:3:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m"next/image"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 6 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:3:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m"next/image"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 6 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:3:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m [33mImage[39m [36mfrom[39m [32m"next/image"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m
+ [90m 5 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 6 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:2:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m
+ [90m 4 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 5 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:2:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m
+ [90m 4 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 5 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:2:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m
+ [90m 4 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 5 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:2:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m
+ [90m 4 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 5 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:2:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m
+ [90m 4 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 5 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:2:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m
+ [90m 4 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 5 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:2:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m
+ [90m 4 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 5 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:2:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m
+ [90m 4 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 5 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:2:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m
+ [90m 4 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 5 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:2:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m
+ [90m 4 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 5 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:2:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m
+ [90m 4 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 5 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ⨯ ./Desktop/nest-next-blog/apps/front/app/page.tsx:2:1
+Module not found: Can't resolve '@/graphql/sdk'
+[0m [90m 1 |[39m [36mimport[39m { [33mHero[39m } [36mfrom[39m [32m"@/components/hero"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { sdk } [36mfrom[39m [32m"@/graphql/sdk"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m
+ [90m 4 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m [33mHome[39m() {
+ [90m 5 |[39m   [36mconst[39m data [33m=[39m [36mawait[39m sdk[33m.[39m[33mListEmployerFavouriteWorkers[39m([0m
+
+Import map: aliased to relative './graphql/sdk' inside of [project]/Desktop/nest-next-blog/apps/front
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ ✓ Compiled in 54ms
+ ⨯ TypeError: {imported module ./Desktop/nest-next-blog/apps/front/graphql/sdk.ts}.sdk.ListEmployerFavouriteWorkers is not a function
+    at Home (app\page.tsx:5:26)
+  3 |
+  4 | export default async function Home() {
+> 5 |   const data = await sdk.ListEmployerFavouriteWorkers(
+    |                          ^
+  6 |     {},
+  7 |     { revalidate: 60 * 60, tags: ["employer-favorites"] }
+  8 |   ); {
+  digest: '677975895'
+}
+ GET / 500 in 225ms (compile: 86ms, render: 138ms)
+ ⨯ ReferenceError: sdk is not defined
+    at Home (app\page.tsx:4:16)
+  2 |
+  3 | export default async function Home() {
+> 4 |   const data = await sdk.ListEmployerFavouriteWorkers(
+    |                ^
+  5 |     {},
+  6 |     { revalidate: 60 * 60, tags: ["employer-favorites"] }
+  7 |   ); {
+  digest: '1435459745'
+}
+ GET / 500 in 197ms (compile: 61ms, render: 136ms)
+ ✓ Compiled in 51ms
+ ⨯ TypeError: {imported module ./Desktop/nest-next-blog/apps/front/graphql/sdk.ts}.sdk.ListEmployerFavouriteWorkers is not a function
+    at Home (app\page.tsx:5:26)
+  3 |
+  4 | export default async function Home() {
+> 5 |   const data = await sdk.ListEmployerFavouriteWorkers(
+    |                          ^
+  6 |     {},
+  7 |     { revalidate: 60 * 60, tags: ["employer-favorites"] }
+  8 |   ); {
+  digest: '677975895'
+}
+ GET / 500 in 286ms (compile: 87ms, render: 199ms)
+ ✓ Compiled in 31ms
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:5:16)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '3420000583'
+}
+ GET / 500 in 333ms (compile: 110ms, render: 223ms)
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:5:16)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '1165429512'
+}
+ GET / 500 in 237ms (compile: 83ms, render: 153ms)
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:5:16)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '1165429512'
+}
+ GET / 500 in 238ms (compile: 68ms, render: 170ms)
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:5:16)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '1165429512'
+}
+ GET / 500 in 191ms (compile: 54ms, render: 137ms)
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:5:16)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '1165429512'
+}
+ GET / 500 in 252ms (compile: 58ms, render: 194ms)
+ ✓ Compiled in 35ms
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:5:16)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '1165429512'
+}
+ GET / 500 in 319ms (compile: 72ms, render: 247ms)
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:5:16)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '1165429512'
+}
+ GET / 500 in 189ms (compile: 48ms, render: 141ms)
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:5:16)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '1165429512'
+}
+ GET / 500 in 85ms (compile: 4ms, render: 81ms)
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:5:16)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '1165429512'
+}
+ GET / 500 in 224ms (compile: 66ms, render: 158ms)
+ GET / 200 in 182ms (compile: 58ms, render: 123ms)
+ GET / 200 in 87ms (compile: 44ms, render: 43ms)
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:5:16)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '1644869705'
+}
+ GET / 200 in 97ms (compile: 50ms, render: 47ms)
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:5:16)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '1165429512'
+}
+ GET / 500 in 427ms (compile: 69ms, render: 358ms)
+ ✓ Compiled in 48ms
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:5:16)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '1165429512'
+}
+ GET / 500 in 272ms (compile: 83ms, render: 189ms)
+ ⨯ ReferenceError: sdk is not defined
+    at Home (app\page.tsx:5:16)
+  3 |
+  4 | export default async function Home() {
+> 5 |   const data = await sdk.Posts({}, { revalidate: 60 * 60, tags: ["posts"] });
+    |                ^
+  6 |   return (
+  7 |     <main>
+  8 |       <Hero /> {
+  digest: '1435459745'
+}
+ GET / 500 in 285ms (compile: 70ms, render: 215ms)
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:6:16)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '1165429512'
+}
+ GET / 500 in 311ms (compile: 103ms, render: 208ms)
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:6:14)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '283100102'
+}
+ GET / 500 in 273ms (compile: 72ms, render: 202ms)
+ ✓ Compiled in 36ms
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:6:19)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '3696889952'
+}
+ GET / 500 in 275ms (compile: 105ms, render: 170ms)
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:6:19)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '3696889952'
+}
+ GET / 500 in 312ms (compile: 86ms, render: 225ms)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 147ms
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:6:19)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '3696889952'
+}
+ GET / 500 in 176ms (compile: 13ms, render: 163ms)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 90ms
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:6:19)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '3696889952'
+}
+ GET / 500 in 126ms (compile: 6ms, render: 119ms)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 75ms
+ ⨯ Error: Unauthorized
+    at <unknown> (graphql\xior.ts:71:13)
+    at async Home (app\page.tsx:6:19)
+  69 |
+  70 |     if (response.data.errors?.length)
+> 71 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  72 |     return response.data.data;
+  73 |   }
+  74 | ); {
+  digest: '3696889952'
+}

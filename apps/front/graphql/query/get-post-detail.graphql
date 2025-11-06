@@ -1,0 +1,17 @@
+query Post($postId: Int!) {
+  post(id: $postId) {
+    ...Post
+    author {
+      ...User
+    }
+    tags {
+      ...Tag
+    }
+    comments {
+      ...Comment
+    }
+    likes {
+      ...Like
+    }
+  }
+}

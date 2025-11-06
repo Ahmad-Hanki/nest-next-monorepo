@@ -28,6 +28,12 @@ type Comment {
   updatedAt: DateTime!
 }
 
+type Like {
+  id: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type Tag {
   id: Int!
   name: String!
@@ -44,6 +50,7 @@ type Post {
   author: User!
   tags: [Tag]
   comments: [Comment]
+  likes: [Like]
   createdAt: DateTime!
   updatedAt: DateTime!
 }

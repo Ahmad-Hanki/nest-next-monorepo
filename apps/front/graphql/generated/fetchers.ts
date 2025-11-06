@@ -34,6 +34,15 @@ export type CreateUserInput = {
   password: Scalars['String']['input'];
 };
 
+export type Like = {
+  __typename?: 'Like';
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['Int']['output'];
+  post: Post;
+  updatedAt: Scalars['DateTime']['output'];
+  user: User;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createUser: User;
@@ -72,6 +81,7 @@ export type Post = {
   content: Scalars['String']['output'];
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['Int']['output'];
+  likes?: Maybe<Array<Maybe<Like>>>;
   published: Scalars['Boolean']['output'];
   slug?: Maybe<Scalars['String']['output']>;
   tags?: Maybe<Array<Maybe<Tag>>>;
@@ -122,7 +132,15 @@ export type User = {
   posts?: Maybe<Array<Maybe<Post>>>;
 };
 
+export type UserFragment = { __typename?: 'User', id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any };
+
 export type PostFragment = { __typename?: 'Post', id: number, title: string, slug?: string | null, thumbnail?: string | null, content: string, published: boolean, createdAt: any, updatedAt: any };
+
+export type CommentFragment = { __typename?: 'Comment', id: number, content: string, createdAt: any, updatedAt: any };
+
+export type TagFragment = { __typename?: 'Tag', id: number, name: string };
+
+export type LikeFragment = { __typename?: 'Like', id: number };
 
 export type PaginationMetaFragment = { __typename?: 'PaginationMeta', totalItems: number, totalPages: number, currentPage: number, nextPage?: number | null, previousPage?: number | null };
 
@@ -133,6 +151,23 @@ export type PostsQueryVariables = Exact<{
 
 export type PostsQuery = { __typename?: 'Query', posts: { __typename?: 'PaginatedPosts', pagination: { __typename?: 'PaginationMeta', totalItems: number, totalPages: number, currentPage: number, nextPage?: number | null, previousPage?: number | null }, items: Array<{ __typename?: 'Post', id: number, title: string, slug?: string | null, thumbnail?: string | null, content: string, published: boolean, createdAt: any, updatedAt: any }> } };
 
+export type PostQueryVariables = Exact<{
+  postId: Scalars['Int']['input'];
+}>;
+
+
+export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: number, title: string, slug?: string | null, thumbnail?: string | null, content: string, published: boolean, createdAt: any, updatedAt: any, author: { __typename?: 'User', id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any }, tags?: Array<{ __typename?: 'Tag', id: number, name: string } | null> | null, comments?: Array<{ __typename?: 'Comment', id: number, content: string, createdAt: any, updatedAt: any } | null> | null, likes?: Array<{ __typename?: 'Like', id: number } | null> | null } };
+
+export const UserFragmentDoc = `
+    fragment User on User {
+  id
+  name
+  email
+  bio
+  avatar
+  createdAt
+}
+    `;
 export const PostFragmentDoc = `
     fragment Post on Post {
   id
@@ -143,6 +178,25 @@ export const PostFragmentDoc = `
   published
   createdAt
   updatedAt
+}
+    `;
+export const CommentFragmentDoc = `
+    fragment Comment on Comment {
+  id
+  content
+  createdAt
+  updatedAt
+}
+    `;
+export const TagFragmentDoc = `
+    fragment Tag on Tag {
+  id
+  name
+}
+    `;
+export const LikeFragmentDoc = `
+    fragment Like on Like {
+  id
 }
     `;
 export const PaginationMetaFragmentDoc = `
@@ -167,11 +221,37 @@ export const PostsDocument = `
 }
     ${PaginationMetaFragmentDoc}
 ${PostFragmentDoc}`;
+export const PostDocument = `
+    query Post($postId: Int!) {
+  post(id: $postId) {
+    ...Post
+    author {
+      ...User
+    }
+    tags {
+      ...Tag
+    }
+    comments {
+      ...Comment
+    }
+    likes {
+      ...Like
+    }
+  }
+}
+    ${PostFragmentDoc}
+${UserFragmentDoc}
+${TagFragmentDoc}
+${CommentFragmentDoc}
+${LikeFragmentDoc}`;
 export type Requester<C = {}> = <R, V>(doc: string, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C>(requester: Requester<C>) {
   return {
     Posts(variables?: PostsQueryVariables, options?: C): Promise<PostsQuery> {
       return requester<PostsQuery, PostsQueryVariables>(PostsDocument, variables, options) as Promise<PostsQuery>;
+    },
+    Post(variables: PostQueryVariables, options?: C): Promise<PostQuery> {
+      return requester<PostQuery, PostQueryVariables>(PostDocument, variables, options) as Promise<PostQuery>;
     }
   };
 }

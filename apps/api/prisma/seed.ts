@@ -13,8 +13,10 @@ function generateSlug(title: string): string {
 }
 
 async function main() {
-  console.log('Seeding Database...');
+  console.log('🌱 Seeding Database...');
   const defaultPassword = await hash('123');
+
+  // Create 10 users
   const users = Array.from({ length: 10 }).map(() => ({
     name: faker.person.fullName(),
     email: faker.internet.email(),
@@ -23,14 +25,13 @@ async function main() {
     password: defaultPassword,
   }));
 
-  await prisma.user.createMany({
-    data: users,
-  });
+  await prisma.user.createMany({ data: users });
 
-  const posts = Array.from({ length: 400 }).map(() => ({
+  // Create 40 posts, each with 3 comments
+  const posts = Array.from({ length: 40 }).map(() => ({
     title: faker.lorem.sentence(),
     slug: generateSlug(faker.lorem.sentence()),
-    content: faker.lorem.paragraphs(3).slice(0, 180), // max 180 chars,
+    content: faker.lorem.paragraphs(2).slice(0, 150),
     thumbnail: faker.image.urlLoremFlickr({ height: 240, width: 320 }),
     authorId: faker.number.int({ min: 1, max: 10 }),
     published: true,
@@ -42,8 +43,8 @@ async function main() {
         ...post,
         comments: {
           createMany: {
-            data: Array.from({ length: 20 }).map(() => ({
-              content: faker.lorem.sentence(),
+            data: Array.from({ length: 3 }).map(() => ({
+              content: faker.lorem.paragraphs(2).slice(0, 150),
               authorId: faker.number.int({ min: 1, max: 10 }),
             })),
           },
@@ -52,16 +53,16 @@ async function main() {
     });
   }
 
-  console.log('Seeding Completed!');
+  console.log('✅ Seeding Completed!');
 }
 
 main()
-  .then(() => {
-    prisma.$disconnect();
+  .then(async () => {
+    await prisma.$disconnect();
     process.exit(0);
   })
-  .catch((e) => {
-    prisma.$disconnect();
+  .catch(async (e) => {
     console.error(e);
+    await prisma.$disconnect();
     process.exit(1);
   });

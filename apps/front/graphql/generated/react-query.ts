@@ -35,6 +35,15 @@ export type CreateUserInput = {
   password: Scalars['String']['input'];
 };
 
+export type Like = {
+  __typename?: 'Like';
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['Int']['output'];
+  post: Post;
+  updatedAt: Scalars['DateTime']['output'];
+  user: User;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createUser: User;
@@ -73,6 +82,7 @@ export type Post = {
   content: Scalars['String']['output'];
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['Int']['output'];
+  likes?: Maybe<Array<Maybe<Like>>>;
   published: Scalars['Boolean']['output'];
   slug?: Maybe<Scalars['String']['output']>;
   tags?: Maybe<Array<Maybe<Tag>>>;

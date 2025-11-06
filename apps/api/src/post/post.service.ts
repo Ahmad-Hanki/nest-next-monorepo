@@ -29,6 +29,9 @@ export class PostService {
   }
 
   async findOne(id: number) {
-    return await this.prisma.post.findUnique({ where: { id } });
+    return await this.prisma.post.findUnique({
+      where: { id },
+      include: { author: true, comments: true, likes: true, postTags: true },
+    });
   }
 }

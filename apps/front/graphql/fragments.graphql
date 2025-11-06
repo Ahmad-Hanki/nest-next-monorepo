@@ -1,3 +1,12 @@
+fragment User on User {
+  id
+  name
+  email
+  bio
+  avatar
+  createdAt
+}
+
 fragment Post on Post {
   id
   title
@@ -7,6 +16,23 @@ fragment Post on Post {
   published
   createdAt
   updatedAt
+}
+
+
+
+fragment Comment on Comment {
+  id
+  content
+  createdAt
+  updatedAt
+}
+
+fragment Tag on Tag {
+  id
+  name
+}
+fragment Like on Like {
+  id
 }
 
 fragment PaginationMeta on PaginationMeta {

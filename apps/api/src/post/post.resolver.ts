@@ -24,7 +24,7 @@ export class PostResolver {
 
   // @UseGuards(JwtAuthGuard)
   @Query(() => Post, { name: 'post' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  getPostById(@Args('id', { type: () => Int }) id: number) {
     return this.postService.findOne(id);
   }
 }

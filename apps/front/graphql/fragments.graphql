@@ -5,6 +5,7 @@ fragment User on User {
   bio
   avatar
   createdAt
+  
 }
 
 fragment Post on Post {

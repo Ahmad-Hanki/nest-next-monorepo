@@ -3,10 +3,15 @@ import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { hash } from 'argon2';
+import { AuthService } from 'src/auth/auth.service';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly authService: AuthService, // 👈 Inject AuthService
+  ) {}
+
   async create(createUserInput: CreateUserInput) {
     const { password, ...userData } = createUserInput;
     const hashedPassword = await hash(password);
@@ -14,22 +19,8 @@ export class UserService {
       data: { ...userData, password: hashedPassword },
     });
 
-    return newUser;
-  }
+    const { accessToken } = await this.authService.generateToken(newUser.id);
 
-  findAll() {
-    return `This action returns all user`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
-
-  update(id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+    return { ...newUser, accessToken };
   }
 }

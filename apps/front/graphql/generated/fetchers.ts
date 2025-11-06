@@ -144,6 +144,13 @@ export type LikeFragment = { __typename?: 'Like', id: number };
 
 export type PaginationMetaFragment = { __typename?: 'PaginationMeta', totalItems: number, totalPages: number, currentPage: number, nextPage?: number | null, previousPage?: number | null };
 
+export type CreateUserMutationVariables = Exact<{
+  createUserInput: CreateUserInput;
+}>;
+
+
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', accessToken?: string | null, id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any } };
+
 export type PostsQueryVariables = Exact<{
   page?: InputMaybe<Scalars['Int']['input']>;
 }>;
@@ -208,6 +215,14 @@ export const PaginationMetaFragmentDoc = `
   previousPage
 }
     `;
+export const CreateUserDocument = `
+    mutation CreateUser($createUserInput: CreateUserInput!) {
+  createUser(createUserInput: $createUserInput) {
+    ...User
+    accessToken
+  }
+}
+    ${UserFragmentDoc}`;
 export const PostsDocument = `
     query Posts($page: Int) {
   posts(page: $page) {
@@ -247,6 +262,9 @@ ${LikeFragmentDoc}`;
 export type Requester<C = {}> = <R, V>(doc: string, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C>(requester: Requester<C>) {
   return {
+    CreateUser(variables: CreateUserMutationVariables, options?: C): Promise<CreateUserMutation> {
+      return requester<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument, variables, options) as Promise<CreateUserMutation>;
+    },
     Posts(variables?: PostsQueryVariables, options?: C): Promise<PostsQuery> {
       return requester<PostsQuery, PostsQueryVariables>(PostsDocument, variables, options) as Promise<PostsQuery>;
     },

@@ -20,5 +20,6 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     }),
   ],
   providers: [AuthResolver, AuthService, PrismaService, JwtStrategy],
+  exports: [AuthService], // 👈 This line is IMPORTANT
 })
 export class AuthModule {}

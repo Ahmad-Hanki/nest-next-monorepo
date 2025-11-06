@@ -12,7 +12,7 @@
 
 # testing
 /coverage
-
+/.turbo/
 # next.js
 /.next/
 /out/

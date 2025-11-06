@@ -2,7 +2,7 @@ import { Post } from "@/graphql/generated/fetchers";
 import Image from "next/image";
 import Link from "next/link";
 
-const PostCard = ({ post }: { post: Post }) => {
+const PostCard = ({ post }: { post: Partial<Post> }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
       <div className="relative h-60 ">

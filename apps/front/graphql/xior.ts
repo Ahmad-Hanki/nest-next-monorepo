@@ -42,6 +42,7 @@ graphqlApi.interceptors.request.use(async (config) => {
   } else {
     cookie = getAuthCookieClient();
   }
+  console.log("🚀 Sending headers:", config.headers);
 
   config.headers = {
     ...config.headers,
@@ -67,8 +68,10 @@ export const cachedFetcher = cache(
       { next: options }
     );
 
-    if (response.data.errors?.length)
+    if (response.data.errors?.length) {
+      console.log("GraphQL Errors:", response.data.errors);
       throw new Error(response.data.errors[0].message);
+    }
     return response.data.data;
   }
 );

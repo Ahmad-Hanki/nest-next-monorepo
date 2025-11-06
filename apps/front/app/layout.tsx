@@ -35,8 +35,8 @@ export default function RootLayout({
           <ReactQueryProvider>
             <NavbarContainer>
               <Navbar />
-              {children}
             </NavbarContainer>
+            {children}
           </ReactQueryProvider>
         </CookiesProvider>
       </body>

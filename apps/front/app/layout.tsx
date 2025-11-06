@@ -5,6 +5,7 @@ import { Navbar } from "@/components/nav-bar";
 import { NavbarContainer } from "@/components/nav-bar-container";
 import ReactQueryProvider from "@/utils/react-query";
 import { CookiesProvider } from "next-client-cookies/server";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,10 +34,12 @@ export default function RootLayout({
       >
         <CookiesProvider>
           <ReactQueryProvider>
-            <NavbarContainer>
-              <Navbar />
-            </NavbarContainer>
-            {children}
+            <NuqsAdapter>
+              <NavbarContainer>
+                <Navbar />
+              </NavbarContainer>
+              {children}
+            </NuqsAdapter>
           </ReactQueryProvider>
         </CookiesProvider>
       </body>

@@ -15,8 +15,8 @@ export class PostResolver {
   @Query(() => PaginatedPosts, { name: 'posts' })
   findAll(
     @Context() context,
-    @Args('page', { nullable: true }) page: number,
-    @Args('take', { nullable: true }) take: number,
+    @Args('page', { type: () => Int, nullable: true }) page: number,
+    @Args('take', { type: () => Int, nullable: true }) take: number,
   ) {
     // const user = context.req.user;
     return this.postService.findAll({ page, take });

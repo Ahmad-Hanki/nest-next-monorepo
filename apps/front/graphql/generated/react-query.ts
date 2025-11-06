@@ -51,6 +51,21 @@ export type MutationSignInArgs = {
   signInInput: SignInInput;
 };
 
+export type PaginatedPosts = {
+  __typename?: 'PaginatedPosts';
+  items: Array<Post>;
+  pagination: PaginationMeta;
+};
+
+export type PaginationMeta = {
+  __typename?: 'PaginationMeta';
+  currentPage: Scalars['Int']['output'];
+  nextPage?: Maybe<Scalars['Int']['output']>;
+  previousPage?: Maybe<Scalars['Int']['output']>;
+  totalItems: Scalars['Int']['output'];
+  totalPages: Scalars['Int']['output'];
+};
+
 export type Post = {
   __typename?: 'Post';
   author: User;
@@ -69,12 +84,18 @@ export type Post = {
 export type Query = {
   __typename?: 'Query';
   post: Post;
-  posts: Array<Post>;
+  posts: PaginatedPosts;
 };
 
 
 export type QueryPostArgs = {
   id: Scalars['Int']['input'];
+};
+
+
+export type QueryPostsArgs = {
+  page?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type SignInInput = {

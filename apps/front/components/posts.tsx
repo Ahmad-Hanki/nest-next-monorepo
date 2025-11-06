@@ -1,7 +1,7 @@
-import { Post } from "@/graphql/generated/fetchers";
+import { PostFragment } from "@/graphql/generated/fetchers";
 import { PostCard } from "./post-card";
 
-const Posts = ({ posts }: { posts: Partial<Post>[] }) => {
+const Posts = ({ posts }: { posts: Partial<PostFragment>[] }) => {
   return (
     <section className="container m-8 max-w-5xl mx-auto">
       <h2 className="text-5xl font-bold text-center text-gray-600  leading-tight">

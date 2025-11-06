@@ -8,3 +8,11 @@ fragment Post on Post {
   createdAt
   updatedAt
 }
+
+fragment PaginationMeta on PaginationMeta {
+  totalItems
+  totalPages
+  currentPage
+  nextPage
+  previousPage
+}

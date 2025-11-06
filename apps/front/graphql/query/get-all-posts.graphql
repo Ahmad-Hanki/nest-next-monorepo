@@ -1,5 +1,10 @@
-query Posts {
-  posts {
-    ...Post
+query Posts($page: Int) {
+  posts(page: $page) {
+    pagination {
+      ...PaginationMeta
+    }
+    items {
+      ...Post
+    }
   }
 }

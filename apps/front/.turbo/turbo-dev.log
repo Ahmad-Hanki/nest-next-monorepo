@@ -13513,3 +13513,722 @@ TypeError: fetch failed
   digest: '2882677830'
 }
  GET / 200 in 342ms (compile: 181ms, render: 161ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 1258ms (compile: 247ms, render: 1011ms)
+ ✓ Compiled in 78ms
+ ✓ Compiled in 131ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 894ms (compile: 583ms, render: 310ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 509ms (compile: 237ms, render: 272ms)
+ ⨯ TypeError: {imported module ./Desktop/nest-next-blog/apps/front/graphql/sdk.ts}.sdk.Posts is not a function
+    at Home (app\page.tsx:7:31)
+   5 |
+   6 | export default async function Home() {
+>  7 |   const { posts } = await sdk.Posts(
+     |                               ^
+   8 |     {
+   9 |
+  10 |     }, {
+  digest: '3636935903'
+}
+ GET / 200 in 322ms (compile: 193ms, render: 129ms)
+ ✓ Compiled in 40ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+GraphQL Errors: [
+  {
+ ⨯ Error: Cannot return null for non-nullable field Post.author.
+    message: 'Cannot return null for non-nullable field Post.author.',
+    locations: [ [Object] ],
+    path: [ 'posts', 'items', 0, 'author' ],
+    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
+  }
+    at <unknown> (graphql\xior.ts:73:13)
+]
+    at async Home (app\page.tsx:7:21)
+  71 |     if (response.data.errors?.length) {
+  72 |       console.log("GraphQL Errors:", response.data.errors);
+> 73 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  74 |     }
+  75 |     return response.data.data;
+  76 |   } {
+  digest: '4033850916'
+}
+ GET / 500 in 2.8s (compile: 373ms, render: 2.4s)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+GraphQL Errors: [
+  {
+    message: 'Cannot return null for non-nullable field Post.author.',
+    locations: [ [Object] ],
+    path: [ 'posts', 'items', 0, 'author' ],
+    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
+  }
+]
+ ⨯ Error: Cannot return null for non-nullable field Post.author.
+    at <unknown> (graphql\xior.ts:73:13)
+    at async Home (app\page.tsx:7:21)
+  71 |     if (response.data.errors?.length) {
+  72 |       console.log("GraphQL Errors:", response.data.errors);
+> 73 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  74 |     }
+  75 |     return response.data.data;
+  76 |   } {
+  digest: '2017122219'
+}
+ GET / 500 in 615ms (compile: 251ms, render: 364ms)
+ ✓ Compiled in 54ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+GraphQL Errors: [
+  {
+    message: 'Cannot return null for non-nullable field Post.author.',
+    locations: [ [Object] ],
+    path: [ 'posts', 'items', 0, 'author' ],
+    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
+  }
+]
+ ⨯ Error: Cannot return null for non-nullable field Post.author.
+    at <unknown> (graphql\xior.ts:73:13)
+    at async Home (app\page.tsx:7:21)
+  71 |     if (response.data.errors?.length) {
+  72 |       console.log("GraphQL Errors:", response.data.errors);
+> 73 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  74 |     }
+  75 |     return response.data.data;
+  76 |   } {
+  digest: '2017122219'
+}
+ GET / 500 in 292ms (compile: 15ms, render: 276ms)
+ ✓ Compiled in 47ms
+ ✓ Compiled in 49ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+GraphQL Errors: [
+  {
+    message: 'Cannot return null for non-nullable field Post.author.',
+    locations: [ [Object] ],
+    path: [ 'posts', 'items', 0, 'author' ],
+    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
+  }
+]
+ ⨯ Error: Cannot return null for non-nullable field Post.author.
+    at <unknown> (graphql\xior.ts:73:13)
+    at async Home (app\page.tsx:7:21)
+  71 |     if (response.data.errors?.length) {
+  72 |       console.log("GraphQL Errors:", response.data.errors);
+> 73 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  74 |     }
+  75 |     return response.data.data;
+  76 |   } {
+  digest: '2017122219'
+}
+ GET / 500 in 325ms (compile: 8ms, render: 317ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+GraphQL Errors: [
+  {
+    message: 'Cannot return null for non-nullable field Post.author.',
+    locations: [ [Object] ],
+    path: [ 'posts', 'items', 0, 'author' ],
+    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
+  }
+]
+ ⨯ Error: Cannot return null for non-nullable field Post.author.
+    at <unknown> (graphql\xior.ts:73:13)
+    at async Home (app\page.tsx:7:21)
+  71 |     if (response.data.errors?.length) {
+  72 |       console.log("GraphQL Errors:", response.data.errors);
+> 73 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  74 |     }
+  75 |     return response.data.data;
+  76 |   } {
+  digest: '2017122219'
+}
+ GET / 500 in 704ms (compile: 259ms, render: 446ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+GraphQL Errors: [
+  {
+    message: 'Cannot return null for non-nullable field Post.author.',
+    locations: [ [Object] ],
+    path: [ 'posts', 'items', 0, 'author' ],
+    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
+  }
+]
+ ⨯ Error: Cannot return null for non-nullable field Post.author.
+    at <unknown> (graphql\xior.ts:73:13)
+    at async Home (app\page.tsx:7:21)
+  71 |     if (response.data.errors?.length) {
+  72 |       console.log("GraphQL Errors:", response.data.errors);
+> 73 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  74 |     }
+  75 |     return response.data.data;
+  76 |   } {
+  digest: '2017122219'
+}
+ GET / 500 in 625ms (compile: 276ms, render: 349ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+GraphQL Errors: [
+  {
+    message: 'Cannot return null for non-nullable field Post.author.',
+    locations: [ [Object] ],
+    path: [ 'posts', 'items', 0, 'author' ],
+    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
+  }
+]
+ ⨯ Error: Cannot return null for non-nullable field Post.author.
+    at <unknown> (graphql\xior.ts:73:13)
+    at async Home (app\page.tsx:7:21)
+  71 |     if (response.data.errors?.length) {
+  72 |       console.log("GraphQL Errors:", response.data.errors);
+> 73 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  74 |     }
+  75 |     return response.data.data;
+  76 |   } {
+  digest: '2017122219'
+}
+ GET / 500 in 658ms (compile: 252ms, render: 407ms)
+ ✓ Compiled in 38ms
+ ⨯ TypeError: {imported module ./Desktop/nest-next-blog/apps/front/graphql/sdk.ts}.sdk.Post is not a function
+    at Home (app\page.tsx:7:31)
+   5 |
+   6 | export default async function Home() {
+>  7 |   const { posts } = await sdk.Post(
+     |                               ^
+   8 |     {},
+   9 |     {
+  10 |       revalidate: 60, {
+  digest: '174339007'
+}
+ GET / 500 in 551ms (compile: 234ms, render: 317ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+GraphQL Errors: [
+  {
+    message: 'Cannot return null for non-nullable field Post.author.',
+    locations: [ [Object] ],
+    path: [ 'posts', 'items', 0, 'author' ],
+    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
+  }
+]
+ ⨯ Error: Cannot return null for non-nullable field Post.author.
+    at <unknown> (graphql\xior.ts:73:13)
+    at async Home (app\page.tsx:7:21)
+  71 |     if (response.data.errors?.length) {
+  72 |       console.log("GraphQL Errors:", response.data.errors);
+> 73 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  74 |     }
+  75 |     return response.data.data;
+  76 |   } {
+  digest: '4033850916'
+}
+ GET / 500 in 1225ms (compile: 277ms, render: 948ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+GraphQL Errors: [
+  {
+    message: 'Cannot return null for non-nullable field Post.author.',
+    locations: [ [Object] ],
+    path: [ 'posts', 'items', 0, 'author' ],
+    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
+  }
+]
+ ⨯ Error: Cannot return null for non-nullable field Post.author.
+    at <unknown> (graphql\xior.ts:73:13)
+    at async Home (app\page.tsx:7:21)
+  71 |     if (response.data.errors?.length) {
+  72 |       console.log("GraphQL Errors:", response.data.errors);
+> 73 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  74 |     }
+  75 |     return response.data.data;
+  76 |   } {
+  digest: '2017122219'
+}
+ GET / 500 in 284ms (compile: 12ms, render: 272ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 955ms (compile: 277ms, render: 678ms)
+ ✓ Compiled in 194ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 1181ms (compile: 725ms, render: 456ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ ✓ Compiled in 649ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 1324ms (compile: 497ms, render: 826ms)
+ GET / 200 in 697ms (compile: 10ms, render: 687ms)
+ ✓ Compiled in 67ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 416ms (compile: 220ms, render: 196ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 465ms (compile: 174ms, render: 291ms)
+ ✓ Compiled in 53ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 1840ms (compile: 796ms, render: 1043ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 100ms (compile: 5ms, render: 95ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 344ms (compile: 180ms, render: 164ms)
+ ✓ Compiled in 37ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 330ms (compile: 142ms, render: 188ms)
+ ✓ Compiled in 43ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 346ms (compile: 191ms, render: 155ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 391ms (compile: 202ms, render: 190ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 810ms (compile: 177ms, render: 633ms)
+ ✓ Compiled in 67ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 319ms (compile: 144ms, render: 176ms)
+ ✓ Compiled in 52ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 382ms (compile: 241ms, render: 141ms)
+ ✓ Compiled in 121ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ ⨯ ReferenceError: PaginationProviderWrapper is not defined
+    at Home (app\page.tsx:24:8)
+  22 |     <main>
+  23 |       <Hero />
+> 24 |       <PaginationProviderWrapper>
+     |        ^
+  25 |         
+  26 |       </PaginationProviderWrapper>
+  27 |       <Posts posts={posts.items} /> {
+  digest: '1100262904'
+}
+ GET / 200 in 876ms (compile: 547ms, render: 329ms)
+ ✓ Compiled in 42ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ ⨯ ReferenceError: PaginationProviderWrapper is not defined
+    at Home (app\page.tsx:24:8)
+  22 |     <main>
+  23 |       <Hero />
+> 24 |       <PaginationProviderWrapper>
+     |        ^
+  25 |         <Posts posts={posts.items} />
+  26 |       </PaginationProviderWrapper>
+  27 |     </main> {
+  digest: '1100262904'
+}
+ GET / 500 in 1611ms (compile: 269ms, render: 1342ms)
+ ✓ Compiled in 2.6s
+ ✓ Compiled in 126ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ ⨯ ReferenceError: PaginationProvider is not defined
+    at Home (app\page.tsx:24:8)
+  22 |     <main>
+  23 |       <Hero />
+> 24 |       <PaginationProvider>
+     |        ^
+  25 |         <Posts posts={posts.items} />
+  26 |       </PaginationProvider>
+  27 |     </main> {
+  digest: '2846037560'
+}
+ GET / 500 in 850ms (compile: 459ms, render: 391ms)
+ ✓ Compiled in 70ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 607ms (compile: 200ms, render: 407ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ ⨯ ReferenceError: PostsWrapper is not defined
+    at Home (app\page.tsx:26:10)
+  24 |       <PaginationProvider>
+  25 |         <Hero />
+> 26 |         <PostsWrapper>
+     |          ^
+  27 |           
+  28 |         </PostsWrapper>
+  29 |         <Posts posts={posts.items} /> {
+  digest: '88632741'
+}
+ GET / 200 in 317ms (compile: 178ms, render: 140ms)
+ ✓ Compiled in 236ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ ⨯ ReferenceError: PostsWrapper is not defined
+    at Home (app\page.tsx:26:10)
+  24 |       <PaginationProvider>
+  25 |         <Hero />
+> 26 |         <PostsWrapper>
+     |          ^
+  27 |
+  28 |         </PostsWrapper>
+  29 |       </PaginationProvider> {
+  digest: '2519394539'
+}
+ ✓ Compiled in 0ms
+ GET / 500 in 690ms (compile: 286ms, render: 404ms)
+ ✓ Compiled in 115ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 1219ms (compile: 263ms, render: 957ms)
+ ✓ Compiled in 54ms
+ ✓ Compiled in 52ms
+ ✓ Compiled in 48ms
+ ✓ Compiled in 64ms
+ ✓ Compiled in 53ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 378ms (compile: 195ms, render: 182ms)
+ ✓ Compiled in 51ms
+ ✓ Compiled in 46ms
+ ✓ Compiled in 73ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 326ms (compile: 156ms, render: 169ms)
+ ✓ Compiled in 44ms
+ ✓ Compiled in 38ms
+ ✓ Compiled in 116ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 504ms (compile: 184ms, render: 320ms)
+ ✓ Compiled in 42ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 332ms (compile: 193ms, render: 139ms)
+ ✓ Compiled in 144ms
+ ✓ Compiled in 99ms
+ ✓ Compiled in 46ms
+ ✓ Compiled in 57ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 466ms (compile: 241ms, render: 225ms)
+ ✓ Compiled in 84ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ ⨯ ReferenceError: CustomPaginationProps is not defined
+    at PostsWrapper (components\posts-wrapper.tsx:28:38)
+  26 |       )}
+  27 |
+> 28 |       {pagination.totalPages > 1 && <CustomPaginationProps />}
+     |                                      ^
+  29 |     </>
+  30 |   );
+  31 | }; {
+  digest: '1665704835'
+}
+ GET / 500 in 1029ms (compile: 182ms, render: 847ms)
+ ✓ Compiled in 51ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ ⨯ ReferenceError: CustomPagination is not defined
+    at PostsWrapper (components\posts-wrapper.tsx:28:38)
+  26 |       )}
+  27 |
+> 28 |       {pagination.totalPages > 1 && <CustomPagination />}
+     |                                      ^
+  29 |     </>
+  30 |   );
+  31 | }; {
+  digest: '2043317837'
+}
+ GET / 500 in 728ms (compile: 319ms, render: 409ms)
+ ✓ Compiled in 83ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ ⨯ TypeError: Cannot destructure property 'currentPage' of 'pagination' as it is undefined.
+    at CustomPagination (components\custom-pagination.tsx:32:11)
+  30 |   className,
+  31 | }: CustomPaginationProps) {
+> 32 |   const { currentPage, totalPages } = pagination;
+     |           ^
+  33 |
+  34 |   if (totalPages <= 1) return null; // hide if only one page
+  35 | {
+  digest: '2110588826'
+}
+ GET / 500 in 683ms (compile: 196ms, render: 487ms)
+ ✓ Compiled in 40ms
+ ✓ Compiled in 51ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ ⨯ ReferenceError: pa is not defined
+    at PostsWrapper (components\posts-wrapper.tsx:30:72)
+  28 |
+  29 |       {pagination.totalPages > 1 && (
+> 30 |         <CustomPagination onPageChange={handlePageChange}  pagination={pa}/>
+     |                                                                        ^
+  31 |       )}
+  32 |     </>
+  33 |   ); {
+  digest: '2886176573'
+}
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 500 in 609ms (compile: 145ms, render: 464ms)
+ ✓ Compiled in 1ms
+ ✓ Compiled in 63ms
+ ✓ Compiled in 70ms
+ ✓ Compiled in 43ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 410ms (compile: 198ms, render: 212ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+GraphQL Errors: [
+  {
+    message: 'Variable "$page" got invalid value "2"; Float cannot represent non numeric value: "2"',
+    locations: [ [Object] ],
+    extensions: { code: 'BAD_USER_INPUT', stacktrace: [Array] }
+  }
+]
+ ⨯ Error: Variable "$page" got invalid value "2"; Float cannot represent non numeric value: "2"
+    at <unknown> (graphql\xior.ts:73:13)
+    at async Home (app\page.tsx:14:21)
+  71 |     if (response.data.errors?.length) {
+  72 |       console.log("GraphQL Errors:", response.data.errors);
+> 73 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  74 |     }
+  75 |     return response.data.data;
+  76 |   } {
+  digest: '1576018529'
+}
+ GET /?page=2 200 in 143ms (compile: 7ms, render: 135ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+GraphQL Errors: [
+  {
+    message: 'Variable "$page" got invalid value "2"; Float cannot represent non numeric value: "2"',
+    locations: [ [Object] ],
+    extensions: { code: 'BAD_USER_INPUT', stacktrace: [Array] }
+  }
+]
+ ⨯ Error: Variable "$page" got invalid value "2"; Float cannot represent non numeric value: "2"
+    at <unknown> (graphql\xior.ts:73:13)
+    at async Home (app\page.tsx:14:21)
+  71 |     if (response.data.errors?.length) {
+  72 |       console.log("GraphQL Errors:", response.data.errors);
+> 73 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  74 |     }
+  75 |     return response.data.data;
+  76 |   } {
+  digest: '3854199375'
+}
+ GET /?page=2 500 in 328ms (compile: 9ms, render: 319ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 320ms (compile: 6ms, render: 313ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 240ms (compile: 5ms, render: 235ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+❌ GraphQL Error: {
+  errors: [
+    {
+      message: 'Unknown type "Float". Did you mean "Post"?',
+      locations: [Array],
+      extensions: [Object]
+    }
+  ]
+}
+ ⨯ Error [XiorError]: Request failed with status code 400
+    at Generator.next (<anonymous>) {
+  request: [Object],
+  config: [Object],
+  response: [Object],
+  digest: '1925115105'
+}
+ GET /?page=3 500 in 252ms (compile: 8ms, render: 245ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+❌ GraphQL Error: {
+  errors: [
+    {
+      message: 'Unknown type "Float". Did you mean "Post"?',
+      locations: [Array],
+      extensions: [Object]
+    }
+  ]
+}
+ ⨯ Error [XiorError]: Request failed with status code 400
+    at Generator.next (<anonymous>) {
+  request: [Object],
+  config: [Object],
+  response: [Object],
+  digest: '1925115105'
+}
+ GET /?page=3 500 in 294ms (compile: 10ms, render: 284ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 354ms (compile: 9ms, render: 346ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+GraphQL Errors: [
+  {
+    message: 'Variable "$page" got invalid value "2"; Float cannot represent non numeric value: "2"',
+    locations: [ [Object] ],
+    extensions: { code: 'BAD_USER_INPUT', stacktrace: [Array] }
+  }
+]
+ ⨯ Error: Variable "$page" got invalid value "2"; Float cannot represent non numeric value: "2"
+    at <unknown> (graphql\xior.ts:73:13)
+    at async Home (app\page.tsx:14:21)
+  71 |     if (response.data.errors?.length) {
+  72 |       console.log("GraphQL Errors:", response.data.errors);
+> 73 |       throw new Error(response.data.errors[0].message);
+     |             ^
+  74 |     }
+  75 |     return response.data.data;
+  76 |   } {
+  digest: '3854199375'
+}
+ GET /?page=2 200 in 95ms (compile: 5ms, render: 90ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+❌ GraphQL Error: {
+  errors: [
+    {
+      message: 'Unknown type "Float". Did you mean "Post"?',
+      locations: [Array],
+      extensions: [Object]
+    }
+  ]
+}
+ ⨯ Error [XiorError]: Request failed with status code 400
+    at Generator.next (<anonymous>) {
+  request: [Object],
+  config: [Object],
+  response: [Object],
+  digest: '1925115105'
+}
+ GET /?page=3 500 in 294ms (compile: 6ms, render: 288ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET / 200 in 358ms (compile: 7ms, render: 351ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+❌ GraphQL Error: {
+  errors: [
+    {
+      message: 'Unknown type "Float". Did you mean "Post"?',
+      locations: [Array],
+      extensions: [Object]
+    }
+  ]
+}
+ ⨯ Error [XiorError]: Request failed with status code 400
+    at Generator.next (<anonymous>) {
+  request: [Object],
+  config: [Object],
+  response: [Object],
+  digest: '1925115105'
+}
+ GET /?page=5 200 in 102ms (compile: 5ms, render: 97ms)
+ ⨯ ReferenceError: Numberparams is not defined
+    at Home (app\page.tsx:16:13)
+  14 |   const { posts } = await sdk.Posts(
+  15 |     {
+> 16 |       page: Numberparams.page || 1,
+     |             ^
+  17 |     },
+  18 |     {
+  19 |       revalidate: 60, {
+  digest: '193743766'
+}
+ GET /?page=5 500 in 664ms (compile: 324ms, render: 340ms)
+ ✓ Compiled in 64ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+❌ GraphQL Error: {
+  errors: [
+    {
+      message: 'Unknown type "Float". Did you mean "Post"?',
+      locations: [Array],
+      extensions: [Object]
+    }
+  ]
+}
+ ⨯ Error [XiorError]: Request failed with status code 400
+    at Generator.next (<anonymous>) {
+  request: [Object],
+  config: [Object],
+  response: [Object],
+  digest: '1925115105'
+}
+ GET /?page=5 500 in 639ms (compile: 223ms, render: 416ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+❌ GraphQL Error: {
+  errors: [
+    {
+      message: 'Unknown type "Float". Did you mean "Post"?',
+      locations: [Array],
+      extensions: [Object]
+    }
+  ]
+}
+ ⨯ Error [XiorError]: Request failed with status code 400
+    at Generator.next (<anonymous>) {
+  request: [Object],
+  config: [Object],
+  response: [Object],
+  digest: '1925115105'
+}
+ GET /?page=5 500 in 1669ms (compile: 184ms, render: 1485ms)
+ ✓ Compiled in 361ms
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+❌ GraphQL Error: {
+  errors: [
+    {
+      message: 'Unknown type "Float". Did you mean "Post"?',
+      locations: [Array],
+      extensions: [Object]
+    }
+  ]
+}
+ ⨯ Error [XiorError]: Request failed with status code 400
+    at Generator.next (<anonymous>) {
+  request: [Object],
+  config: [Object],
+  response: [Object],
+  digest: '1925115105'
+}
+ GET /?page=5 500 in 2.8s (compile: 1804ms, render: 991ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+❌ GraphQL Error: {
+  errors: [
+    {
+      message: 'Unknown type "Float". Did you mean "Post"?',
+      locations: [Array],
+      extensions: [Object]
+    }
+  ]
+}
+ ⨯ Error [XiorError]: Request failed with status code 400
+    at Generator.next (<anonymous>) {
+  request: [Object],
+  config: [Object],
+  response: [Object],
+  digest: '1925115105'
+}
+ GET /?page=5 500 in 217ms (compile: 6ms, render: 211ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+❌ GraphQL Error: {
+  errors: [
+    {
+      message: 'Unknown type "Float". Did you mean "Post"?',
+      locations: [Array],
+      extensions: [Object]
+    }
+  ]
+}
+ ⨯ Error [XiorError]: Request failed with status code 400
+    at Generator.next (<anonymous>) {
+  request: [Object],
+  config: [Object],
+  response: [Object],
+  digest: '1925115105'
+}
+ GET /?page=5 500 in 216ms (compile: 4ms, render: 212ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+❌ GraphQL Error: {
+  errors: [
+    {
+      message: 'Unknown type "Float". Did you mean "Post"?',
+      locations: [Array],
+      extensions: [Object]
+    }
+  ]
+}
+ ⨯ Error [XiorError]: Request failed with status code 400
+    at Generator.next (<anonymous>) {
+  request: [Object],
+  config: [Object],
+  response: [Object],
+  digest: '1925115105'
+}
+ GET /?page=6 500 in 243ms (compile: 4ms, render: 239ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET /?page=6 200 in 962ms (compile: 199ms, render: 763ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET /?page=5 200 in 276ms (compile: 9ms, render: 267ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET /?page=8 200 in 632ms (compile: 4ms, render: 628ms)
+🚀 Sending headers: { 'Content-Type': 'application/json' }
+ GET /?page=9 200 in 327ms (compile: 6ms, render: 321ms)

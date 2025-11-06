@@ -50,6 +50,21 @@ export type MutationSignInArgs = {
   signInInput: SignInInput;
 };
 
+export type PaginatedPosts = {
+  __typename?: 'PaginatedPosts';
+  items: Array<Post>;
+  pagination: PaginationMeta;
+};
+
+export type PaginationMeta = {
+  __typename?: 'PaginationMeta';
+  currentPage: Scalars['Int']['output'];
+  nextPage?: Maybe<Scalars['Int']['output']>;
+  previousPage?: Maybe<Scalars['Int']['output']>;
+  totalItems: Scalars['Int']['output'];
+  totalPages: Scalars['Int']['output'];
+};
+
 export type Post = {
   __typename?: 'Post';
   author: User;
@@ -68,12 +83,18 @@ export type Post = {
 export type Query = {
   __typename?: 'Query';
   post: Post;
-  posts: Array<Post>;
+  posts: PaginatedPosts;
 };
 
 
 export type QueryPostArgs = {
   id: Scalars['Int']['input'];
+};
+
+
+export type QueryPostsArgs = {
+  page?: InputMaybe<Scalars['Int']['input']>;
+  take?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type SignInInput = {
@@ -103,10 +124,14 @@ export type User = {
 
 export type PostFragment = { __typename?: 'Post', id: number, title: string, slug?: string | null, thumbnail?: string | null, content: string, published: boolean, createdAt: any, updatedAt: any };
 
-export type PostsQueryVariables = Exact<{ [key: string]: never; }>;
+export type PaginationMetaFragment = { __typename?: 'PaginationMeta', totalItems: number, totalPages: number, currentPage: number, nextPage?: number | null, previousPage?: number | null };
+
+export type PostsQueryVariables = Exact<{
+  page?: InputMaybe<Scalars['Int']['input']>;
+}>;
 
 
-export type PostsQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', id: number, title: string, slug?: string | null, thumbnail?: string | null, content: string, published: boolean, createdAt: any, updatedAt: any }> };
+export type PostsQuery = { __typename?: 'Query', posts: { __typename?: 'PaginatedPosts', pagination: { __typename?: 'PaginationMeta', totalItems: number, totalPages: number, currentPage: number, nextPage?: number | null, previousPage?: number | null }, items: Array<{ __typename?: 'Post', id: number, title: string, slug?: string | null, thumbnail?: string | null, content: string, published: boolean, createdAt: any, updatedAt: any }> } };
 
 export const PostFragmentDoc = `
     fragment Post on Post {
@@ -120,13 +145,28 @@ export const PostFragmentDoc = `
   updatedAt
 }
     `;
+export const PaginationMetaFragmentDoc = `
+    fragment PaginationMeta on PaginationMeta {
+  totalItems
+  totalPages
+  currentPage
+  nextPage
+  previousPage
+}
+    `;
 export const PostsDocument = `
-    query Posts {
-  posts {
-    ...Post
+    query Posts($page: Int) {
+  posts(page: $page) {
+    pagination {
+      ...PaginationMeta
+    }
+    items {
+      ...Post
+    }
   }
 }
-    ${PostFragmentDoc}`;
+    ${PaginationMetaFragmentDoc}
+${PostFragmentDoc}`;
 export type Requester<C = {}> = <R, V>(doc: string, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C>(requester: Requester<C>) {
   return {

@@ -62,7 +62,7 @@ type PaginatedPosts {
 }
 
 type Query {
-  posts(page: Float, take: Float): PaginatedPosts!
+  posts(page: Int, take: Int): PaginatedPosts!
   post(id: Int!): Post!
 }
 

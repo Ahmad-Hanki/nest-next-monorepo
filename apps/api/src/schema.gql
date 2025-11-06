@@ -30,6 +30,8 @@ type Comment {
 
 type Like {
   id: Int!
+  user: User!
+  post: Post!
   createdAt: DateTime!
   updatedAt: DateTime!
 }

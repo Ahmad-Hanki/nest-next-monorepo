@@ -1,5 +1,6 @@
 import { sdk } from "@/graphql/sdk";
 import Image from "next/image";
+import SanitizedContent from "./_components/SanitizedContent";
 
 const PostDetailPage = async ({
   params,
@@ -27,10 +28,10 @@ const PostDetailPage = async ({
           className="rounded-md object-cover"
         />
       </div>
-      {/* 
+
       <SanitizedContent content={post.content} />
 
-      <Like postId={post.id} user={session?.user} />
+      {/*    <Like postId={post.id} user={session?.user} />
       <Comments user={session?.user} postId={post.id} /> */}
     </main>
   );

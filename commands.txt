@@ -1,15 +1,43 @@
+
+MONOREPO
 - git init
 - npm init -y
 - npm i --save-dev turbo
-then turbo.josn 
+then turbo.json 
 change package.json
 
+// and then inside the folder we decide, we create the back and the front
 
-npm i class-validator // for validation
-npm i class-transformer // just added it
-npm i argon2 // for hashing the password
-npm i @nestjs/jwt // jwt
+BACKEND
+- npm i class-validator // for validation
+- npm i class-transformer // just added it
 
-openssl rand -hex 32 // chatgpt can generate it
+- npm i argon2 // for hashing the password
+// jwt and auth res
+step1: create user function in users with hashed password => apps\api\src\user\user.resolver.ts
 
-npm i @nestjs/config // enable it in app module
+- npm i @nestjs/jwt 
+- openssl rand -hex 32 // chatgpt can generate it
+step2: login user function => with validation 
+step3: after the user data are checked with email and hashed password using argon2, 
+we create the accessToken and pass it to the users data. and we pass it to the client
+=> apps\api\src\auth\auth.service.ts
+step4: we import the JwtModule in the authModule => apps\api\src\auth\auth.module.ts
+
+- npm i @nestjs/config // enable it in app module
+step5: we import the ConfigModule in the app module => apps\api\src\app.module.ts
+
+
+
+// protect routes (Guarding)
+- npm i passport passport-jwt
+- npm i @types/passport-jwt
+- npm i @nestjs/passport
+
+step1: create this path => apps\api\src\auth\strategies\jwt.strategy.ts
+step2: we create the validateJwtUser in the server of auth. => apps\api\src\auth\auth.service.ts
+step3: auth module injection. JwtStrategy => apps\api\src\auth\auth.module.ts
+
+- nest g gu auth/guards/jwt-auth
+apps\api\src\auth\guards\jwt-auth\jwt-auth.guard.ts
+finally implementation  => @UseGuards(JwtAuthGuard)

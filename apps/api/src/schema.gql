@@ -48,8 +48,21 @@ type Post {
   updatedAt: DateTime!
 }
 
+type PaginationMeta {
+  totalItems: Int!
+  totalPages: Int!
+  currentPage: Int!
+  nextPage: Int
+  previousPage: Int
+}
+
+type PaginatedPosts {
+  items: [Post!]!
+  pagination: PaginationMeta!
+}
+
 type Query {
-  posts: [Post!]!
+  posts(page: Float, take: Float): PaginatedPosts!
   post(id: Int!): Post!
 }
 

@@ -5,16 +5,21 @@ import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth/jwt-auth.guard';
+import { PaginatedPosts } from 'src/common/pagination/pagination-types';
 
 @Resolver(() => Post)
 export class PostResolver {
   constructor(private readonly postService: PostService) {}
 
   // @UseGuards(JwtAuthGuard)
-  @Query(() => [Post], { name: 'posts' })
-  findAll(@Context() context) {
-    const user = context.req.user;
-    return this.postService.findAll();
+  @Query(() => PaginatedPosts, { name: 'posts' })
+  findAll(
+    @Context() context,
+    @Args('page', { nullable: true }) page: number,
+    @Args('take', { nullable: true }) take: number,
+  ) {
+    // const user = context.req.user;
+    return this.postService.findAll({ page, take });
   }
 
   // @UseGuards(JwtAuthGuard)

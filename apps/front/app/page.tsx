@@ -6,10 +6,11 @@ import { sdk } from "@/graphql/sdk";
 export default async function Home() {
   const { posts } = await sdk.Posts(
     {},
-    { revalidate: 60 * 60, tags: ["posts"] }
+    {
+      revalidate: 60,
+      tags: ["posts"],
+    }
   );
-
-  console.log("posts", posts);
   return (
     <main>
       <Hero />

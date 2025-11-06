@@ -6,3 +6,351 @@
  We detected multiple lockfiles and selected the directory of C:\Users\LENOVO\package-lock.json as the root directory.
  To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
    See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+   ▲ Next.js 16.0.1 (Turbopack)
+ Detected additional lockfiles: 
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.102:3000
+   * C:\Users\LENOVO\Desktop\nest-next-blog\apps\front\package-lock.json
+   * C:\Users\LENOVO\Desktop\nest-next-blog\package-lock.json
+
+
+ ✓ Starting...
+ ✓ Ready in 2.1s
+ GET / 200 in 4.2s (compile: 3.9s, render: 254ms)
+ GET /hero.png 404 in 694ms (compile: 620ms, render: 74ms)
+ GET / 200 in 131ms (compile: 58ms, render: 72ms)
+ GET / 200 in 111ms (compile: 58ms, render: 53ms)
+ GET / 200 in 89ms (compile: 40ms, render: 48ms)
+ GET / 200 in 110ms (compile: 54ms, render: 56ms)
+ GET / 200 in 100ms (compile: 53ms, render: 47ms)
+ GET / 200 in 168ms (compile: 54ms, render: 114ms)
+ GET / 200 in 97ms (compile: 49ms, render: 48ms)
+ GET / 200 in 119ms (compile: 68ms, render: 51ms)
+ GET / 200 in 105ms (compile: 55ms, render: 50ms)
+ GET / 200 in 79ms (compile: 42ms, render: 37ms)
+ GET / 200 in 73ms (compile: 3ms, render: 71ms)
+ ✓ Compiled in 54ms
+ ✓ Compiled in 82ms
+ ✓ Compiled in 145ms
+ GET / 200 in 112ms (compile: 64ms, render: 49ms)
+ GET / 200 in 43ms (compile: 7ms, render: 36ms)
+ ⨯ ReferenceError: Navbar is not defined
+    at RootLayout (app\layout.tsx:33:12)
+  31 |
+  32 |         <DesktopNavbar>
+> 33 |           <Navbar />
+     |            ^
+  34 |         </DesktopNavbar>
+  35 |         {children}
+  36 |       </body> {
+  digest: '466162316'
+}
+ GET / 200 in 129ms (compile: 53ms, render: 76ms)
+ ⨯ ReferenceError: Navbar is not defined
+    at RootLayout (app\layout.tsx:33:12)
+  31 |
+  32 |         <DesktopNavbar>
+> 33 |           <Navbar />
+     |            ^
+  34 |         </DesktopNavbar>
+  35 |         {children}
+  36 |       </body> {
+  digest: '466162316'
+}
+ GET / 200 in 44ms (compile: 5ms, render: 39ms)
+ GET / 200 in 214ms (compile: 65ms, render: 149ms)
+ GET / 200 in 115ms (compile: 62ms, render: 53ms)
+ GET / 200 in 114ms (compile: 57ms, render: 56ms)
+ GET / 200 in 132ms (compile: 70ms, render: 61ms)
+ GET / 200 in 18ms (compile: 3ms, render: 15ms)
+ GET / 200 in 111ms (compile: 55ms, render: 56ms)
+ GET / 200 in 22ms (compile: 3ms, render: 19ms)
+ ✓ Compiled in 39ms
+ ✓ Compiled in 31ms
+ ✓ Compiled in 33ms
+ ✓ Compiled in 82ms
+ ✓ Compiled in 48ms
+ ⨯ ReferenceError: BarsIcon is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<BarsIcon className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '3412338781'
+}
+ GET / 200 in 137ms (compile: 58ms, render: 79ms)
+ ⨯ ReferenceError: BarsIcon is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<BarsIcon className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '3412338781'
+}
+ GET / 200 in 29ms (compile: 5ms, render: 24ms)
+ ⨯ ReferenceError: BarsIcon is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<BarsIcon className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '3412338781'
+}
+ GET / 500 in 314ms (compile: 55ms, render: 259ms)
+ ⨯ ReferenceError: More is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<More className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '1509043549'
+}
+ GET / 500 in 244ms (compile: 98ms, render: 146ms)
+ GET / 200 in 191ms (compile: 49ms, render: 143ms)
+ ⨯ ReferenceError: More is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<More className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '1509043549'
+}
+ GET / 200 in 106ms (compile: 62ms, render: 43ms)
+ ⨯ ReferenceError: More is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<More className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '1509043549'
+}
+ GET / 200 in 38ms (compile: 4ms, render: 34ms)
+ GET / 200 in 204ms (compile: 59ms, render: 145ms)
+ ⨯ ReferenceError: MoreHorizontal is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<MoreHorizontal className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '3573961245'
+}
+ GET / 200 in 108ms (compile: 69ms, render: 39ms)
+ ⨯ ReferenceError: MoreHorizontal is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<MoreHorizontal className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '3573961245'
+}
+ GET / 200 in 25ms (compile: 3ms, render: 22ms)
+ ⨯ ReferenceError: More is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<More className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '1509043549'
+}
+ GET / 500 in 156ms (compile: 56ms, render: 100ms)
+ ⨯ ReferenceError: Bard is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<Bard className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '543734301'
+}
+ GET / 500 in 224ms (compile: 71ms, render: 153ms)
+ ✓ Compiled in 56ms
+ ⨯ ReferenceError: Bars is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<Bars className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '1590472445'
+}
+ GET / 500 in 182ms (compile: 63ms, render: 119ms)
+ ✓ Compiled in 57ms
+ ⨯ ReferenceError: Nav is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<Nav className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '389440285'
+}
+ GET / 500 in 235ms (compile: 92ms, render: 142ms)
+ ⨯ ReferenceError: More is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<More className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '1509043549'
+}
+ GET / 500 in 185ms (compile: 80ms, render: 105ms)
+ ✓ Compiled in 42ms
+ ⨯ ReferenceError: Open is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<Open className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '3870274493'
+}
+ GET / 500 in 255ms (compile: 118ms, render: 137ms)
+ ⨯ ReferenceError: Bar is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<Bar className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '1319288093'
+}
+ GET / 500 in 226ms (compile: 62ms, render: 164ms)
+ ⨯ ReferenceError: Line is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<Line className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '537136381'
+}
+ GET / 500 in 182ms (compile: 67ms, render: 115ms)
+ ⨯ ReferenceError: Lines is not defined
+    at MobileNavbar (components\mobile-navbar.tsx:9:23)
+   7 |     <div className="md:hidden">
+   8 |       <SideBar
+>  9 |         triggerIcon={<Lines className="w-4" />}
+     |                       ^
+  10 |         triggerClassName="absolute top-2 left-2"
+  11 |       >
+  12 |         {props.children} {
+  digest: '1625920541'
+}
+ GET / 500 in 176ms (compile: 61ms, render: 115ms)
+ GET / 200 in 195ms (compile: 60ms, render: 135ms)
+ ✓ Compiled in 58ms
+ GET / 200 in 77ms (compile: 41ms, render: 37ms)
+ GET / 200 in 30ms (compile: 4ms, render: 26ms)
+ ✓ Compiled in 38ms
+ ✓ Compiled in 47ms
+ ✓ Compiled in 183ms
+ ✓ Compiled in 59ms
+ ✓ Compiled in 35ms
+ ✓ Compiled in 48ms
+ ✓ Compiled in 44ms
+ ✓ Compiled in 26ms
+ ✓ Compiled in 51ms
+ ⨯ ReferenceError: ReactQueryProvider is not defined
+    at RootLayout (app\layout.tsx:32:10)
+  30 |         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+  31 |       >
+> 32 |         <ReactQueryProvider>
+     |          ^
+  33 |           
+  34 |         </ReactQueryProvider>
+  35 |         <NavbarContainer> {
+  digest: '3927405674'
+}
+ GET / 200 in 497ms (compile: 397ms, render: 100ms)
+ ⨯ ReferenceError: ReactQueryProvider is not defined
+    at RootLayout (app\layout.tsx:32:10)
+  30 |         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+  31 |       >
+> 32 |         <ReactQueryProvider>
+     |          ^
+  33 |           
+  34 |         </ReactQueryProvider>
+  35 |         <NavbarContainer> {
+  digest: '3927405674'
+}
+ GET / 200 in 45ms (compile: 5ms, render: 39ms)
+ ✓ Compiled in 34ms
+ ⨯ ReferenceError: ReactQueryProvider is not defined
+    at RootLayout (app\layout.tsx:32:10)
+  30 |         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+  31 |       >
+> 32 |         <ReactQueryProvider>
+     |          ^
+  33 |           <NavbarContainer>
+  34 |             <Navbar />
+  35 |           </NavbarContainer> {
+  digest: '3927405674'
+}
+ GET / 500 in 503ms (compile: 68ms, render: 436ms)
+ ✓ Compiled in 370ms
+ GET / 200 in 490ms (compile: 179ms, render: 311ms)
+   Reload env: .env
+ GET / 200 in 94ms (compile: 42ms, render: 52ms)
+   Reload env: .env
+ GET / 200 in 78ms (compile: 38ms, render: 40ms)
+   Reload env: .env
+ GET / 200 in 170ms (compile: 129ms, render: 41ms)
+   Reload env: .env
+ GET / 200 in 85ms (compile: 38ms, render: 47ms)
+   Reload env: .env
+ GET / 200 in 81ms (compile: 37ms, render: 43ms)
+   Reload env: .env
+ GET / 200 in 73ms (compile: 38ms, render: 35ms)
+   Reload env: .env
+ GET / 200 in 160ms (compile: 128ms, render: 32ms)
+   Reload env: .env
+ GET / 200 in 176ms (compile: 141ms, render: 35ms)
+   Reload env: .env
+ GET / 200 in 227ms (compile: 164ms, render: 62ms)
+ GET / 200 in 136ms (compile: 76ms, render: 60ms)
+ GET / 200 in 44ms (compile: 5ms, render: 38ms)
+ GET / 200 in 153ms (compile: 72ms, render: 81ms)
+ GET / 200 in 34ms (compile: 4ms, render: 30ms)
+ GET / 200 in 149ms (compile: 73ms, render: 76ms)

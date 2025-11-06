@@ -8,4 +8,8 @@ export class PostService {
   async findAll() {
     return await this.prisma.post.findMany();
   }
+
+  async findOne(id: number) {
+    return await this.prisma.post.findUnique({ where: { id } });
+  }
 }

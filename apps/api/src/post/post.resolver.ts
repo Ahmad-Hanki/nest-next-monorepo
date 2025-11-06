@@ -16,4 +16,10 @@ export class PostResolver {
     const user = context.req.user;
     return this.postService.findAll();
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Query(() => Post, { name: 'post' })
+  findOne(@Args('id', { type: () => Int }) id: number) {
+    return this.postService.findOne(id);
+  }
 }

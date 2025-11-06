@@ -1,0 +1,10 @@
+fragment Post on Post {
+  id
+  title
+  slug
+  thumbnail
+  content
+  published
+  createdAt
+  updatedAt
+}

@@ -12,15 +12,35 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { useCreateUserMutation } from "@/graphql/generated/react-query";
+import { setAuthCookie } from "@/lib/auth-cookies";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { mutate, isPending } = useCreateUserMutation({
+    async onSuccess(data) {
+      const { createUser } = data;
+      if (!createUser.accessToken) {
+        console.error("No access token received after sign up.");
+        return;
+      }
+
+      setAuthCookie(createUser.accessToken);
+      toast.success("Account created successfully!");
+    },
+    onError(error) {
+      toast.error(`Error: ${error.message}`);
+    },
+  });
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password || !name) {
@@ -28,7 +48,13 @@ export function LoginForm({
       return;
     }
 
-    // Handle form submission logic here
+    mutate({
+      createUserInput: {
+        name,
+        email,
+        password,
+      },
+    });
   };
 
   return (
@@ -49,7 +75,7 @@ export function LoginForm({
                   type="text"
                   placeholder="Ahmad Hanki"
                   required
-                  value={email}
+                  value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </Field>
@@ -75,7 +101,9 @@ export function LoginForm({
                 />
               </Field>
               <Field>
-                <Button type="submit">SignUp</Button>
+                <Button disabled={isPending} type="submit">
+                  {isPending ? "Creating account..." : "Create Account"}
+                </Button>
               </Field>
               <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
                 Or continue with

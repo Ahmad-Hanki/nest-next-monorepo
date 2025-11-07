@@ -1,4 +1,4 @@
-import { CookieValueTypes, setCookie } from "cookies-next";
+import { CookieValueTypes, setCookie, deleteCookie } from "cookies-next";
 import { getCookie } from "cookies-next/client";
 
 export const setAuthCookie = (cookie: CookieValueTypes) => {
@@ -38,4 +38,13 @@ export const getAuthCookieServer = async (): Promise<{
   } catch {
     return null;
   }
+};
+
+export const clearAuthCookie = () => {
+  deleteCookie("accessToken");
+};
+
+export const deleteAuthCookieServer = async () => {
+  const { cookies } = await import("next/headers");
+  (await cookies()).delete("accessToken");
 };

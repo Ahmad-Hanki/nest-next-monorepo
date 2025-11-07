@@ -5,7 +5,6 @@ import { hash, verify } from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { AuthJwtPayload } from './types/auth-jwt-payload';
 import { User } from '@prisma/client';
-import { CustomException } from 'src/common/exception/custom-exception';
 @Injectable()
 export class AuthService {
   constructor(

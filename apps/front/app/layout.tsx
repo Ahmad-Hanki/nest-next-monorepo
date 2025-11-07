@@ -6,6 +6,7 @@ import { NavbarContainer } from "@/components/nav-bar-container";
 import ReactQueryProvider from "@/utils/react-query";
 import { CookiesProvider } from "next-client-cookies/server";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,7 @@ export default function RootLayout({
                 <Navbar />
               </NavbarContainer>
               {children}
+              <Toaster position="top-center" reverseOrder={false} />
             </NuqsAdapter>
           </ReactQueryProvider>
         </CookiesProvider>

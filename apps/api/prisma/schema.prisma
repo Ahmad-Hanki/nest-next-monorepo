@@ -14,11 +14,17 @@ model User {
   bio       String?
   avatar    String?
   password  String?
+  role      Role      @default(USER)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   posts     Post[]
   comments  Comment[]
   likes     Like[]
+}
+
+enum Role {
+  USER
+  ADMIN
 }
 
 model Post {

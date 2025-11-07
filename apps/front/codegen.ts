@@ -5,7 +5,7 @@ const config: CodegenConfig = {
   ignoreNoDocuments: true,
   generates: {
     "graphql/generated/react-query.ts": {
-      documents: ["/graphql/**/*.graphql"],
+      documents: ["graphql/**/*.graphql"],
       plugins: [
         {
           add: {

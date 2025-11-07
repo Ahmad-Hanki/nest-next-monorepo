@@ -1,4 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Role } from '@prisma/client';
 import { Comment } from 'src/comment/entities/comment.entity';
 import { Post } from 'src/post/entities/post.entity';
 
@@ -27,6 +28,9 @@ export class User {
 
   @Field(() => [Comment], { nullable: 'itemsAndList' })
   comments: Comment[];
+
+  @Field(() => Role)
+  role: Role;
 
   @Field({ nullable: true })
   accessToken?: string;

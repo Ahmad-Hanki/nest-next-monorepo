@@ -11,6 +11,7 @@ type User {
   createdAt: DateTime!
   posts: [Post]
   comments: [Comment]
+  role: String!
   accessToken: String
 }
 

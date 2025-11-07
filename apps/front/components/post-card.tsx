@@ -10,16 +10,17 @@ const PostCard = ({ post }: { post: Partial<PostFragment> }) => {
           src={post.thumbnail ?? "/no-image.png"}
           alt={post.title ?? ""}
           fill
+          loading="eager"
         />
       </div>
-      <div className="p-6 flex-grow  flex flex-col">
-        <h3 className="text-lg font-bold mt-4 break-words text-center text-gray-600">
+      <div className="p-6 grow  flex flex-col">
+        <h3 className="text-lg font-bold mt-4 wrap-break-word text-center text-gray-600">
           {post.title}
         </h3>
         <p className="mt-2 text-gray-500 text-sm ">
           {new Date(post.createdAt ?? "").toLocaleDateString()}
         </p>
-        <p className="mt-4 text-gray-700 break-words">
+        <p className="mt-4 text-gray-700 wrap-break-word">
           {post.content?.slice(0, 100)}...
         </p>
         <Link

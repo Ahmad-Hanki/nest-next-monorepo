@@ -1,0 +1,188 @@
+# 🔐 NestJS + GraphQL + Next.js Authentication & Refresh Token Setup
+
+## 🛠️ Dependencies
+
+Install all required packages:
+
+npm i argon2 @nestjs/jwt @nestjs/passport passport passport-jwt @nestjs/config
+npm i -D @types/passport-jwt
+
+---
+
+## 🔹 Step 1: User Creation (Register)
+
+**File:** apps/api/src/user/user.service.ts  
+- Hash the password using `argon2` before saving.  
+- Implement `createUser()` to save the user with a **hashed password**.  
+
+✅ Example:
+```ts
+const hashedPassword = await hash(createUserInput.password);
+return this.prisma.user.create({
+  data: { ...createUserInput, password: hashedPassword },
+});
+```
+
+---
+
+## 🔹 Step 2: AuthService – Login, Token Generation & Refresh
+
+**File:** apps/api/src/auth/auth.service.ts
+
+Handles:
+- `validateLocalUser()` → validates email and password using `argon2.verify()`
+- `generateTokens()` → creates both **access** and **refresh tokens**
+- `login()` → returns user data + both tokens
+- `refreshToken()` → verifies old token, fetches user from DB, and issues **new tokens**
+
+✅ Features:
+- Refresh token is **hashed and stored in DB** (`user.refreshToken`).
+- Access token expires in **24h**, refresh token in **7 days**.
+- When refreshed, both tokens are rotated securely.
+
+---
+
+## 🔹 Step 3: AuthModule Setup
+
+**File:** apps/api/src/auth/auth.module.ts
+
+Import and configure JWT:
+
+```ts
+JwtModule.registerAsync({
+  useFactory: (configService: ConfigService) => ({
+    secret: configService.get<string>('JWT_SECRET'),
+    signOptions: { expiresIn: '24h' },
+  }),
+  inject: [ConfigService],
+})
+```
+
+✅ Don’t forget to export the `AuthService`.
+
+---
+
+## 🔹 Step 4: Enable ConfigModule (Global Environment Variables)
+
+**File:** apps/api/src/app.module.ts
+
+```ts
+imports: [ConfigModule.forRoot({ isGlobal: true })]
+```
+
+Allows access to environment variables such as:
+```env
+JWT_SECRET=supersecretkey
+DATABASE_URL=your_postgres_url
+```
+
+---
+
+## 🔹 Step 5: JWT Strategy
+
+**File:** apps/api/src/auth/strategies/jwt.strategy.ts
+
+Defines how JWTs are extracted and validated:
+- Extract token from `Authorization: Bearer TOKEN`
+- Validate with your `JWT_SECRET`
+- Attach the user ID to the request by calling:
+```ts
+return this.authService.validateJwtUser(payload.sub);
+```
+
+---
+
+## 🔹 Step 6: Auth Guard (Protect Routes)
+
+**Generate:**
+```bash
+nest g gu auth/guards/jwt-auth
+```
+
+**File:** apps/api/src/auth/guards/jwt-auth.guard.ts
+
+Guards routes that require login:
+```ts
+@UseGuards(JwtAuthGuard)
+@Query(() => User)
+me(@CurrentUser() user: User) {
+  return user;
+}
+```
+
+✅ Only users with a valid JWT token can access protected resolvers.
+
+---
+
+## 🔹 Step 7: CurrentUser Decorator
+
+**File:** apps/api/src/auth/decorators/current-user.decorator.ts
+
+Simplifies extracting user from the request.
+
+Usage:
+```ts
+@UseGuards(JwtAuthGuard)
+updateUser(@CurrentUser() user: User) {
+  console.log(user.id);
+}
+```
+
+---
+
+## 🔹 Step 8: Refresh Token Mutation (GraphQL)
+
+**File:** apps/api/src/auth/auth.resolver.ts
+
+Adds a GraphQL mutation for refreshing the access token:
+```ts
+@Mutation(() => String)
+async refreshToken(@Args('token') token: string) {
+  const { accessToken } = await this.authService.refreshToken(token);
+  return accessToken;
+}
+```
+
+---
+
+## 🔹 Step 9: Frontend Integration (Next.js)
+
+### ✅ 9.1. Prefetch User (Server)
+**File:** app/layout.tsx  
+- Prefetch `Me` query  
+- If token expired → render `<RefreshAccessToken />`
+
+### ✅ 9.2. Refresh Token Component
+**File:** components/refresh-token.tsx  
+Automatically refreshes and sets new cookie:
+```ts
+const { refreshToken: accessToken } = await sdk.RefreshToken({
+  token: cookie.accessToken,
+});
+setAuthCookie(accessToken, cookie.role);
+window.location.reload();
+```
+
+### ✅ 9.3. Auth Cookie Utilities
+**File:** lib/auth-cookies.ts  
+Handles reading, setting, and clearing cookies (`httpOnly`, secure, etc.)
+
+---
+
+## ✅ Summary
+
+| Feature | Status | Description |
+|----------|--------|-------------|
+| Password hashing | ✅ | Secure with argon2 |
+| JWT generation | ✅ | Access + Refresh |
+| Refresh token storage | ✅ | Hashed in DB |
+| Token rotation | ✅ | New tokens each refresh |
+| Auth Guard | ✅ | Protects private routes |
+| CurrentUser decorator | ✅ | Simplifies user access |
+| Frontend integration | ✅ | Refresh + Prefetch handled |
+
+---
+
+🚀 **Result:**  
+You now have a **fully functional and secure JWT + Refresh Token system** integrated with **NestJS + GraphQL + Next.js (React Query)**.  
+It’s production-ready and follows the same best practices used in enterprise apps.

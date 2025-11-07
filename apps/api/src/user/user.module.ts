@@ -5,7 +5,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
-  imports: [AuthModule],
+  imports: [AuthModule], // Import AuthModule to use AuthService so that we can generate tokens
   providers: [UserResolver, UserService, PrismaService],
 })
 export class UserModule {}

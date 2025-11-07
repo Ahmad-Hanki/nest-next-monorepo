@@ -54,8 +54,9 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException('Data not found');
     }
-    const currentUserId = { id: user.id };
-    return currentUserId;
+
+    const { refreshToken, password, ...rest } = user;
+    return rest;
   }
 
   // Validate refresh token and issue a new access token

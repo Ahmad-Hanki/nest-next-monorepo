@@ -37,6 +37,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let content;
   const queryClient = new QueryClient();
 
   const token = await getAuthCookieServer();
@@ -56,13 +57,7 @@ export default async function RootLayout({
       }
     } catch (err) {
       if (err instanceof XiorError && err.response?.status === 401) {
-        return (
-          <html lang="tr">
-            <body>
-              <RefreshAccessToken />
-            </body>
-          </html>
-        );
+        content = <RefreshAccessToken />;
       }
     }
   }
@@ -72,19 +67,19 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <HydrationBoundary state={dehydrate(queryClient)}>
-          <CookiesProvider>
-            <ReactQueryProvider>
+        <ReactQueryProvider>
+          <HydrationBoundary state={dehydrate(queryClient)}>
+            <CookiesProvider>
               <NuqsAdapter>
                 <NavbarContainer>
                   <Navbar />
                 </NavbarContainer>
-                {children}
+                {content || children}
                 <Toaster position="top-center" reverseOrder={false} />
               </NuqsAdapter>
-            </ReactQueryProvider>
-          </CookiesProvider>
-        </HydrationBoundary>
+            </CookiesProvider>
+          </HydrationBoundary>
+        </ReactQueryProvider>
       </body>
     </html>
   );

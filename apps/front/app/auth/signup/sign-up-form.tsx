@@ -12,11 +12,14 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { useCreateUserMutation } from "@/graphql/generated/react-query";
+import {
+  useCreateUserMutation,
+  useMeQuery,
+} from "@/graphql/generated/react-query";
 import { setAuthCookie } from "@/lib/auth-cookies";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-
+import { QueryClient } from "@tanstack/react-query";
 export function SignUpForm({
   className,
   ...props
@@ -25,6 +28,7 @@ export function SignUpForm({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const queryClient = new QueryClient();
 
   const { mutate, isPending } = useCreateUserMutation({
     async onSuccess(data) {
@@ -36,6 +40,7 @@ export function SignUpForm({
 
       setAuthCookie(createUser.accessToken, createUser.role);
       toast.success("Account created successfully!");
+      await queryClient.setQueryData(useMeQuery.getKey(), { me: createUser });
 
       router.replace("/");
     },

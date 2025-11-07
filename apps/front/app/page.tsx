@@ -20,6 +20,7 @@ export default async function Home({
       tags: [`posts-${params.page || 1}`],
     }
   );
+  
   return (
     <main>
       <PaginationProvider>

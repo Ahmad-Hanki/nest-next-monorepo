@@ -11,4 +11,10 @@ export class AuthResolver {
   async signIn(@Args('signInInput') signInInput: SignInInput) {
     return await this.authService.validateLocalUser(signInInput);
   }
+
+  @Mutation(() => String)
+  async refreshToken(@Args('token') token: string) {
+    const { accessToken } = await this.authService.refreshToken(token);
+    return accessToken;
+  }
 }

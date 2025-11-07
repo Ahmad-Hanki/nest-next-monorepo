@@ -16,13 +16,11 @@ import { useSignInMutation } from "@/graphql/generated/react-query";
 import { setAuthCookie } from "@/lib/auth-cookies";
 import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useUser } from "@/hooks/user-hook";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const { setUser } = useUser();
   const searchParams = useSearchParams();
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -38,7 +36,6 @@ export function LoginForm({
 
       setAuthCookie(signIn.accessToken, signIn.role);
       toast.success("Logged in successfully!");
-      setUser(signIn);
       const redirectTo = searchParams.get("redirect") || "/";
 
       router.replace(redirectTo);

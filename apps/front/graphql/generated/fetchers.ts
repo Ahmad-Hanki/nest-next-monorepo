@@ -46,12 +46,18 @@ export type Like = {
 export type Mutation = {
   __typename?: 'Mutation';
   createUser: User;
+  refreshToken: Scalars['String']['output'];
   signIn: User;
 };
 
 
 export type MutationCreateUserArgs = {
   createUserInput: CreateUserInput;
+};
+
+
+export type MutationRefreshTokenArgs = {
+  token: Scalars['String']['input'];
 };
 
 
@@ -92,6 +98,7 @@ export type Post = {
 
 export type Query = {
   __typename?: 'Query';
+  me: User;
   post: Post;
   posts: PaginatedPosts;
 };
@@ -136,6 +143,7 @@ export type User = {
   id: Scalars['Int']['output'];
   name: Scalars['String']['output'];
   posts?: Maybe<Array<Maybe<Post>>>;
+  refreshToken?: Maybe<Scalars['String']['output']>;
   role: Role;
 };
 
@@ -158,6 +166,13 @@ export type CreateUserMutationVariables = Exact<{
 
 export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', accessToken?: string | null, id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any, role: Role } };
 
+export type RefreshTokenMutationVariables = Exact<{
+  token: Scalars['String']['input'];
+}>;
+
+
+export type RefreshTokenMutation = { __typename?: 'Mutation', refreshToken: string };
+
 export type SignInMutationVariables = Exact<{
   signInInput: SignInInput;
 }>;
@@ -178,6 +193,11 @@ export type PostQueryVariables = Exact<{
 
 
 export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: number, title: string, slug?: string | null, thumbnail?: string | null, content: string, published: boolean, createdAt: any, updatedAt: any, author: { __typename?: 'User', id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any, role: Role }, tags?: Array<{ __typename?: 'Tag', id: number, name: string } | null> | null, comments?: Array<{ __typename?: 'Comment', id: number, content: string, createdAt: any, updatedAt: any } | null> | null, likes?: Array<{ __typename?: 'Like', id: number } | null> | null } };
+
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any, role: Role } };
 
 export const UserFragmentDoc = `
     fragment User on User {
@@ -238,6 +258,11 @@ export const CreateUserDocument = `
   }
 }
     ${UserFragmentDoc}`;
+export const RefreshTokenDocument = `
+    mutation RefreshToken($token: String!) {
+  refreshToken(token: $token)
+}
+    `;
 export const SignInDocument = `
     mutation SignIn($signInInput: SignInInput!) {
   signIn(signInInput: $signInInput) {
@@ -282,11 +307,21 @@ ${UserFragmentDoc}
 ${TagFragmentDoc}
 ${CommentFragmentDoc}
 ${LikeFragmentDoc}`;
+export const MeDocument = `
+    query Me {
+  me {
+    ...User
+  }
+}
+    ${UserFragmentDoc}`;
 export type Requester<C = {}> = <R, V>(doc: string, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C>(requester: Requester<C>) {
   return {
     CreateUser(variables: CreateUserMutationVariables, options?: C): Promise<CreateUserMutation> {
       return requester<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument, variables, options) as Promise<CreateUserMutation>;
+    },
+    RefreshToken(variables: RefreshTokenMutationVariables, options?: C): Promise<RefreshTokenMutation> {
+      return requester<RefreshTokenMutation, RefreshTokenMutationVariables>(RefreshTokenDocument, variables, options) as Promise<RefreshTokenMutation>;
     },
     SignIn(variables: SignInMutationVariables, options?: C): Promise<SignInMutation> {
       return requester<SignInMutation, SignInMutationVariables>(SignInDocument, variables, options) as Promise<SignInMutation>;
@@ -296,6 +331,9 @@ export function getSdk<C>(requester: Requester<C>) {
     },
     Post(variables: PostQueryVariables, options?: C): Promise<PostQuery> {
       return requester<PostQuery, PostQueryVariables>(PostDocument, variables, options) as Promise<PostQuery>;
+    },
+    Me(variables?: MeQueryVariables, options?: C): Promise<MeQuery> {
+      return requester<MeQuery, MeQueryVariables>(MeDocument, variables, options) as Promise<MeQuery>;
     }
   };
 }

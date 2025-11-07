@@ -27,8 +27,18 @@ export class UserService {
       data: { ...userData, password: hashedPassword },
     });
 
-    const { accessToken } = await this.authService.generateToken(newUser.id);
+    const tokens = await this.authService.generateTokens(newUser.id);
 
-    return { ...newUser, accessToken };
+    return { ...newUser, ...tokens };
+  }
+
+  async me(userId: number) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+    });
+    if (!user) {
+      null;
+    }
+    return user;
   }
 }

@@ -13,6 +13,7 @@ type User {
   comments: [Comment]
   role: Role!
   accessToken: String
+  refreshToken: String
 }
 
 """
@@ -80,11 +81,13 @@ type PaginatedPosts {
 type Query {
   posts(page: Int, take: Int): PaginatedPosts!
   post(id: Int!): Post!
+  me: User!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   signIn(signInInput: SignInInput!): User!
+  refreshToken(token: String!): String!
 }
 
 input CreateUserInput {

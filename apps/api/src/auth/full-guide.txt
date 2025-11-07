@@ -1,0 +1,55 @@
+Dependencies
+
+Install all required packages:
+
+npm i argon2 @nestjs/jwt @nestjs/passport passport passport-jwt @nestjs/config
+npm i -D @types/passport-jwt
+
+
+🔹 Step 1: User Creation (Register)
+File: apps/api/src/user/user.service.ts
+Hash password using argon2 before saving:
+Implement the createUser function to store user with hashed password.
+
+
+🔹 Step 2: AuthService – Login & Token Generation
+File: apps/api/src/auth/auth.service.ts
+validateLocalUser() → checks email and password.
+generateToken() → creates a JWT access token.
+login() → returns user data + access token.
+
+
+🔹 Step 3: AuthModule Setup
+File: apps/api/src/auth/auth.module.ts
+Import JwtModule and configure it with environment variables.
+✅ Don’t forget to export the AuthService
+
+🔹 Step 4: Enable ConfigModule
+File: apps/api/src/app.module.ts
+imports: [ConfigModule.forRoot({ isGlobal: true })]
+This allows .env variables to be used globally in your app (like JWT_SECRET).
+
+🔹 Step 5: Create JWT Strategy
+File: apps/api/src/auth/strategies/jwt.strategy.ts
+Defines how JWTs are extracted and validated:
+Reads token from header (Bearer TOKEN)
+Validates with secret
+Attaches the user to the request via: 
+return this.authService.validateJwtUser(payload.sub);
+
+🔹 Step 6: Auth Guard (Route Protection)
+Generate and configure:
+- nest g gu auth/guards/jwt-auth
+File: apps/api/src/auth/guards/jwt-auth.guard.ts
+Then, use in resolvers like this
+@UseGuards(JwtAuthGuard)
+
+🔹 Step 7: (Optional) CurrentUser Decorator
+File: apps/api/src/auth/decorators/current-user.decorator.ts
+Simplifies extracting the user from request:
+@UseGuards(JwtAuthGuard)
+Usage:
+updateUser(@CurrentUser() user: User) {
+  console.log(user.id);
+}
+

@@ -49,12 +49,18 @@ export type Like = {
 export type Mutation = {
   __typename?: 'Mutation';
   createUser: User;
+  refreshToken: Scalars['String']['output'];
   signIn: User;
 };
 
 
 export type MutationCreateUserArgs = {
   createUserInput: CreateUserInput;
+};
+
+
+export type MutationRefreshTokenArgs = {
+  token: Scalars['String']['input'];
 };
 
 
@@ -95,6 +101,7 @@ export type Post = {
 
 export type Query = {
   __typename?: 'Query';
+  me: User;
   post: Post;
   posts: PaginatedPosts;
 };
@@ -139,6 +146,7 @@ export type User = {
   id: Scalars['Int']['output'];
   name: Scalars['String']['output'];
   posts?: Maybe<Array<Maybe<Post>>>;
+  refreshToken?: Maybe<Scalars['String']['output']>;
   role: Role;
 };
 
@@ -161,6 +169,13 @@ export type CreateUserMutationVariables = Exact<{
 
 export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', accessToken?: string | null, id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any, role: Role } };
 
+export type RefreshTokenMutationVariables = Exact<{
+  token: Scalars['String']['input'];
+}>;
+
+
+export type RefreshTokenMutation = { __typename?: 'Mutation', refreshToken: string };
+
 export type SignInMutationVariables = Exact<{
   signInInput: SignInInput;
 }>;
@@ -181,6 +196,11 @@ export type PostQueryVariables = Exact<{
 
 
 export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: number, title: string, slug?: string | null, thumbnail?: string | null, content: string, published: boolean, createdAt: any, updatedAt: any, author: { __typename?: 'User', id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any, role: Role }, tags?: Array<{ __typename?: 'Tag', id: number, name: string } | null> | null, comments?: Array<{ __typename?: 'Comment', id: number, content: string, createdAt: any, updatedAt: any } | null> | null, likes?: Array<{ __typename?: 'Like', id: number } | null> | null } };
+
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any, role: Role } };
 
 
 export const UserFragmentDoc = `
@@ -252,6 +272,25 @@ export const useCreateUserMutation = <
       {
     mutationKey: ['CreateUser'],
     mutationFn: (variables?: CreateUserMutationVariables) => reactQueryFetcher<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument, variables)(),
+    ...options
+  }
+    )};
+
+export const RefreshTokenDocument = `
+    mutation RefreshToken($token: String!) {
+  refreshToken(token: $token)
+}
+    `;
+
+export const useRefreshTokenMutation = <
+      TError = XiorError,
+      TContext = unknown
+    >(options?: UseMutationOptions<RefreshTokenMutation, TError, RefreshTokenMutationVariables, TContext>) => {
+    
+    return useMutation<RefreshTokenMutation, TError, RefreshTokenMutationVariables, TContext>(
+      {
+    mutationKey: ['RefreshToken'],
+    mutationFn: (variables?: RefreshTokenMutationVariables) => reactQueryFetcher<RefreshTokenMutation, RefreshTokenMutationVariables>(RefreshTokenDocument, variables)(),
     ...options
   }
     )};
@@ -351,6 +390,32 @@ export const usePostQuery = <
     )};
 
 usePostQuery.getKey = (variables: PostQueryVariables) => ['Post', variables];
+
+export const MeDocument = `
+    query Me {
+  me {
+    ...User
+  }
+}
+    ${UserFragmentDoc}`;
+
+export const useMeQuery = <
+      TData = MeQuery,
+      TError = XiorError
+    >(
+      variables?: MeQueryVariables,
+      options?: Omit<UseQueryOptions<MeQuery, TError, TData>, 'queryKey'> & { queryKey?: UseQueryOptions<MeQuery, TError, TData>['queryKey'] }
+    ) => {
+    
+    return useQuery<MeQuery, TError, TData>(
+      {
+    queryKey: variables === undefined ? ['Me'] : ['Me', variables],
+    queryFn: reactQueryFetcher<MeQuery, MeQueryVariables>(MeDocument, variables),
+    ...options
+  }
+    )};
+
+useMeQuery.getKey = (variables?: MeQueryVariables) => variables === undefined ? ['Me'] : ['Me', variables];
 
 
       export interface PossibleTypesResultData {

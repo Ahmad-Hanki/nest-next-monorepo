@@ -16,14 +16,11 @@ import { useCreateUserMutation } from "@/graphql/generated/react-query";
 import { setAuthCookie } from "@/lib/auth-cookies";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { useUser } from "@/hooks/user-hook";
 
 export function SignUpForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const { setUser } = useUser();
-
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -39,7 +36,6 @@ export function SignUpForm({
 
       setAuthCookie(createUser.accessToken, createUser.role);
       toast.success("Account created successfully!");
-      setUser(createUser);
 
       router.replace("/");
     },

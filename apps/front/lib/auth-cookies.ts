@@ -1,3 +1,4 @@
+import { Role } from "@/graphql/generated/fetchers";
 import { CookieValueTypes, setCookie, deleteCookie } from "cookies-next";
 import { getCookie } from "cookies-next/client";
 
@@ -19,7 +20,7 @@ export const setAuthCookie = (
 
 export const getAuthCookieClient = (): {
   accessToken: string;
-  role: string;
+  role: Role;
 } | null => {
   const cookie = getCookie("_auth");
   if (!cookie) return null;

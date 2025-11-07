@@ -11,7 +11,7 @@ type User {
   createdAt: DateTime!
   posts: [Post]
   comments: [Comment]
-  role: String!
+  role: Role!
   accessToken: String
 }
 
@@ -19,6 +19,12 @@ type User {
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
+
+"""The role of a user"""
+enum Role {
+  ADMIN
+  USER
+}
 
 type Comment {
   id: Int!

@@ -1,0 +1,27 @@
+- Only Admins Access
+@Roles('admin')
+@UseGuards(JwtAuthGuard, RolesGuard)
+// JwtAuthGuard checks if the user is logged in.
+// RolesGuard checks if user.role === 'admin'.
+// Only passes if both are true.
+
+- Any Logged-in User (Authenticated)
+@UseGuards(JwtAuthGuard)
+
+- Only current user and admin Access
+@UseGuards(JwtAuthGuard)
+// Inside the function   @CurrentUser() user: User,
+// You gotta do the checks inside to
+example:
+
+@Mutation(() => User)
+@UseGuards(JwtAuthGuard)
+updateUser( // function name
+  @CurrentUser() user: User,
+  @Args('updateUserInput') updateUserInput: UpdateUserInput
+) {
+  if (user.role !== 'admin' && user.id !== updateUserInput.id) {
+    throw new ForbiddenException('You cannot update this user');
+  }
+  return this.userService.update(updateUserInput.id, updateUserInput);
+}

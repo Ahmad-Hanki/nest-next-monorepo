@@ -6,6 +6,8 @@ import { UpdatePostInput } from './dto/update-post.input';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth/jwt-auth.guard';
 import { PaginatedPosts } from 'src/common/pagination/pagination-types';
+import { RolesGuard } from 'src/auth/guards/jwt-auth/jwt-auth-roles.guard';
+import { Roles } from 'src/common/decorators/roles.decorator';
 
 @Resolver(() => Post)
 export class PostResolver {
@@ -21,8 +23,8 @@ export class PostResolver {
     // const user = context.req.user;
     return this.postService.findAll({ page, take });
   }
-
-  // @UseGuards(JwtAuthGuard)
+  // @Roles('admin')
+  // @UseGuards(JwtAuthGuard, RolesGuard)
   @Query(() => Post, { name: 'post' })
   getPostById(@Args('id', { type: () => Int }) id: number) {
     return this.postService.findOne(id);

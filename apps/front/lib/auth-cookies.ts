@@ -1,22 +1,27 @@
 import { CookieValueTypes, setCookie, deleteCookie } from "cookies-next";
 import { getCookie } from "cookies-next/client";
 
-export const setAuthCookie = (cookie: CookieValueTypes) => {
+export const setAuthCookie = (
+  cookie: CookieValueTypes,
+  role: "USER" | "ADMIN"
+) => {
   const cookieValue = encodeURIComponent(
     JSON.stringify({
       accessToken: cookie,
+      role: role,
     })
   );
 
-  setCookie("accessToken", cookieValue, {
+  setCookie("_auth", cookieValue, {
     maxAge: 60 * 60 * 24 * 30,
   });
 };
 
 export const getAuthCookieClient = (): {
   accessToken: string;
+  role: string;
 } | null => {
-  const cookie = getCookie("accessToken");
+  const cookie = getCookie("_auth");
   if (!cookie) return null;
 
   try {
@@ -28,9 +33,10 @@ export const getAuthCookieClient = (): {
 
 export const getAuthCookieServer = async (): Promise<{
   accessToken: string;
+  role: string;
 } | null> => {
   const { cookies } = await import("next/headers");
-  const cookie = (await cookies()).get("accessToken")?.value;
+  const cookie = (await cookies()).get("_auth")?.value;
   if (!cookie) return null;
 
   try {
@@ -41,10 +47,10 @@ export const getAuthCookieServer = async (): Promise<{
 };
 
 export const clearAuthCookie = () => {
-  deleteCookie("accessToken");
+  deleteCookie("_auth");
 };
 
 export const deleteAuthCookieServer = async () => {
   const { cookies } = await import("next/headers");
-  (await cookies()).delete("accessToken");
+  (await cookies()).delete("_auth");
 };

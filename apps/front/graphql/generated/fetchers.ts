@@ -107,6 +107,12 @@ export type QueryPostsArgs = {
   take?: InputMaybe<Scalars['Int']['input']>;
 };
 
+/** The role of a user */
+export enum Role {
+  Admin = 'ADMIN',
+  User = 'USER'
+}
+
 export type SignInInput = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
@@ -130,9 +136,10 @@ export type User = {
   id: Scalars['Int']['output'];
   name: Scalars['String']['output'];
   posts?: Maybe<Array<Maybe<Post>>>;
+  role: Role;
 };
 
-export type UserFragment = { __typename?: 'User', id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any };
+export type UserFragment = { __typename?: 'User', id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any, role: Role };
 
 export type PostFragment = { __typename?: 'Post', id: number, title: string, slug?: string | null, thumbnail?: string | null, content: string, published: boolean, createdAt: any, updatedAt: any };
 
@@ -149,7 +156,14 @@ export type CreateUserMutationVariables = Exact<{
 }>;
 
 
-export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', accessToken?: string | null, id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any } };
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', accessToken?: string | null, id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any, role: Role } };
+
+export type SignInMutationVariables = Exact<{
+  signInInput: SignInInput;
+}>;
+
+
+export type SignInMutation = { __typename?: 'Mutation', signIn: { __typename?: 'User', accessToken?: string | null, id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any, role: Role } };
 
 export type PostsQueryVariables = Exact<{
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -163,7 +177,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: number, title: string, slug?: string | null, thumbnail?: string | null, content: string, published: boolean, createdAt: any, updatedAt: any, author: { __typename?: 'User', id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any }, tags?: Array<{ __typename?: 'Tag', id: number, name: string } | null> | null, comments?: Array<{ __typename?: 'Comment', id: number, content: string, createdAt: any, updatedAt: any } | null> | null, likes?: Array<{ __typename?: 'Like', id: number } | null> | null } };
+export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: number, title: string, slug?: string | null, thumbnail?: string | null, content: string, published: boolean, createdAt: any, updatedAt: any, author: { __typename?: 'User', id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any, role: Role }, tags?: Array<{ __typename?: 'Tag', id: number, name: string } | null> | null, comments?: Array<{ __typename?: 'Comment', id: number, content: string, createdAt: any, updatedAt: any } | null> | null, likes?: Array<{ __typename?: 'Like', id: number } | null> | null } };
 
 export const UserFragmentDoc = `
     fragment User on User {
@@ -173,6 +187,7 @@ export const UserFragmentDoc = `
   bio
   avatar
   createdAt
+  role
 }
     `;
 export const PostFragmentDoc = `
@@ -223,6 +238,14 @@ export const CreateUserDocument = `
   }
 }
     ${UserFragmentDoc}`;
+export const SignInDocument = `
+    mutation SignIn($signInInput: SignInInput!) {
+  signIn(signInInput: $signInInput) {
+    ...User
+    accessToken
+  }
+}
+    ${UserFragmentDoc}`;
 export const PostsDocument = `
     query Posts($page: Int) {
   posts(page: $page) {
@@ -264,6 +287,9 @@ export function getSdk<C>(requester: Requester<C>) {
   return {
     CreateUser(variables: CreateUserMutationVariables, options?: C): Promise<CreateUserMutation> {
       return requester<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument, variables, options) as Promise<CreateUserMutation>;
+    },
+    SignIn(variables: SignInMutationVariables, options?: C): Promise<SignInMutation> {
+      return requester<SignInMutation, SignInMutationVariables>(SignInDocument, variables, options) as Promise<SignInMutation>;
     },
     Posts(variables?: PostsQueryVariables, options?: C): Promise<PostsQuery> {
       return requester<PostsQuery, PostsQueryVariables>(PostsDocument, variables, options) as Promise<PostsQuery>;

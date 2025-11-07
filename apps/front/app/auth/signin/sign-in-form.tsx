@@ -12,31 +12,33 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { useCreateUserMutation } from "@/graphql/generated/react-query";
+import { useSignInMutation } from "@/graphql/generated/react-query";
 import { setAuthCookie } from "@/lib/auth-cookies";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export function SignUpForm({
+export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { mutate, isPending } = useCreateUserMutation({
+  const { mutate, isPending } = useSignInMutation({
     async onSuccess(data) {
-      const { createUser } = data;
-      if (!createUser.accessToken || !createUser.role) {
-        console.error("No access token or role received after sign up.");
+      const { signIn } = data;
+      if (!signIn.accessToken || !signIn.role) {
+        console.error("No access token or role received after sign in.");
         return;
       }
 
-      setAuthCookie(createUser.accessToken, createUser.role);
-      toast.success("Account created successfully!");
-      router.replace("/");
+      await setAuthCookie(signIn.accessToken, signIn.role);
+      toast.success("Logged in successfully!");
+      const redirectTo = searchParams.get("redirect") || "/";
+
+      router.replace(redirectTo);
     },
     onError(error) {
       toast.error(`Error: ${error.message}`);
@@ -44,14 +46,13 @@ export function SignUpForm({
   });
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !password || !name) {
+    if (!email || !password) {
       alert("Please fill in all required fields.");
       return;
     }
 
     mutate({
-      createUserInput: {
-        name,
+      signInInput: {
         email,
         password,
       },
@@ -66,20 +67,10 @@ export function SignUpForm({
             <FieldGroup>
               <div className="flex flex-col items-center gap-2 text-center">
                 <p className="text-muted-foreground text-balance">
-                  Welcome! Please sign up for your account.
+                  Welcome! Please sign In for your account.
                 </p>
               </div>
-              <Field>
-                <FieldLabel htmlFor="email">Name</FieldLabel>
-                <Input
-                  id="name"
-                  type="text"
-                  placeholder="Ahmad Hanki"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </Field>
+
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input

@@ -1,0 +1,6 @@
+mutation SignIn($signInInput: SignInInput!) {
+  signIn(signInInput: $signInInput) {
+    ...User
+    accessToken
+  }
+}

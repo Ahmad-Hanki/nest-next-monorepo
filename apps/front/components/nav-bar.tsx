@@ -1,6 +1,11 @@
+"use client";
+import { useAuthStatus } from "@/lib/auth";
 import Link from "next/link";
-type Props = {};
-const Navbar = async (props: Props) => {
+import { usePathname } from "next/navigation";
+import { Profile } from "./profile";
+const Navbar = () => {
+  const { isLoggedIn } = useAuthStatus();
+  const pathname = usePathname();
   return (
     <>
       <h1 className="text-2xl font-bold p-2">My Modern Blog</h1>
@@ -14,6 +19,14 @@ const Navbar = async (props: Props) => {
         <Link href="#contact" className="">
           Contact
         </Link>
+
+        {isLoggedIn ? (
+          <Profile />
+        ) : (
+          <Link href={`/auth/signin?redirect=${encodeURIComponent(pathname)}`}>
+            Sign In
+          </Link>
+        )}
       </div>
     </>
   );

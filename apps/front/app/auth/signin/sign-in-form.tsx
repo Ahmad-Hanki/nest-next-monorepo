@@ -17,6 +17,7 @@ import { setAuthCookie } from "@/lib/auth-cookies";
 import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
 import { QueryClient } from "@tanstack/react-query";
+import { GoogleButton } from "@/components/google-button";
 
 export function LoginForm({
   className,
@@ -104,7 +105,7 @@ export function LoginForm({
               <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
                 Or continue with
               </FieldSeparator>
-              {/* your social login buttons... */}
+              <GoogleButton />
             </FieldGroup>
           </form>
 

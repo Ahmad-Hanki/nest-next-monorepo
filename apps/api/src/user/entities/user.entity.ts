@@ -32,6 +32,9 @@ export class User {
   @Field({ nullable: true })
   avatar?: string;
 
+  @Field(() => Role)
+  role: Role;
+
   @Field(() => Date)
   createdAt: Date;
 
@@ -40,9 +43,6 @@ export class User {
 
   @Field(() => [Comment], { nullable: 'itemsAndList' })
   comments: Comment[];
-
-  @Field(() => Role)
-  role: Role;
 
   @Field({ nullable: true })
   accessToken?: string;

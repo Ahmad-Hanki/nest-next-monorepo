@@ -20,6 +20,7 @@ import { setAuthCookie } from "@/lib/auth-cookies";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { QueryClient } from "@tanstack/react-query";
+import { GoogleButton } from "@/components/google-button";
 export function SignUpForm({
   className,
   ...props
@@ -115,7 +116,7 @@ export function SignUpForm({
               <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
                 Or continue with
               </FieldSeparator>
-              {/* your social login buttons... */}
+              <GoogleButton />
             </FieldGroup>
           </form>
 

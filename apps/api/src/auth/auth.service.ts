@@ -5,6 +5,7 @@ import { hash, verify } from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { AuthJwtPayload } from './types/auth-jwt-payload';
 import { User } from '@prisma/client';
+import { CreateUserInput } from 'src/user/dto/create-user.input';
 @Injectable()
 export class AuthService {
   constructor(
@@ -86,6 +87,25 @@ export class AuthService {
       return { accessToken, refreshToken };
     } catch {
       throw new UnauthorizedException('Refresh token expired or invalid');
+    }
+  }
+
+  async validateGoogleUser(googleUser: CreateUserInput) {
+    let user = await this.prisma.user.findUnique({
+      where: { email: googleUser.email },
+    });
+
+    if (user) {
+      const { password, refreshToken, ...rest } = user;
+      return rest;
+    } else {
+      const newUser = await this.prisma.user.create({
+        data: {
+          ...googleUser,
+        },
+      });
+      const { password, refreshToken, ...rest } = newUser;
+      return rest;
     }
   }
 }

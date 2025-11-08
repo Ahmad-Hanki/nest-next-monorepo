@@ -1,6 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth/jwt-auth.guard';
 
 import { PrismaService } from 'src/prisma/prisma.service';
+import { User } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class PostService {
@@ -27,11 +29,32 @@ export class PostService {
       },
     };
   }
+  async findOne({ id, user }: { id: number; user?: { sub: number } }) {
+    console.log(user, 'user in findOne');
 
-  async findOne(id: number) {
-    return await this.prisma.post.findUnique({
+    const post = await this.prisma.post.findUnique({
       where: { id },
-      include: { author: true, comments: true, likes: true, postTags: true },
+      include: {
+        author: true,
+        comments: true,
+        likes: true,
+        postTags: true,
+      },
     });
+
+    if (!post) return null;
+
+    // calculate likeCount
+    const likeCount = post.likes.length;
+
+    const isLikedByCurrentUser = user
+      ? post.likes.some((like) => like.userId === user.sub)
+      : false;
+
+    return {
+      ...post,
+      likeCount,
+      isLikedByCurrentUser,
+    };
   }
 }

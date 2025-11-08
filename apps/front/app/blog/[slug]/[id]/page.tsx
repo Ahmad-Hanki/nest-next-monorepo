@@ -2,6 +2,7 @@ import { sdk } from "@/graphql/sdk";
 import Image from "next/image";
 import SanitizedContent from "./_components/SanitizedContent";
 import { Comments } from "./_components/comments";
+import Like from "./_components/like";
 
 const PostDetailPage = async ({
   params,
@@ -12,7 +13,7 @@ const PostDetailPage = async ({
 
   const { post } = await sdk.Post(
     { postId: Number(id) },
-    { revalidate: 60, tags: [`post-${id}`] }
+    { revalidate: 1, tags: [`post-${id}`] }
   );
   return (
     <main className="container mx-auto px-4 py-8 mt-16">
@@ -32,7 +33,11 @@ const PostDetailPage = async ({
 
       <SanitizedContent content={post.content} />
 
-      {/*    <Like postId={post.id} user={session?.user} /> */}
+      <Like
+        postId={post.id}
+        likedByUserId={post.isLikedByCurrentUser}
+        likeCount={post.likeCount}
+      />
       <Comments />
     </main>
   );

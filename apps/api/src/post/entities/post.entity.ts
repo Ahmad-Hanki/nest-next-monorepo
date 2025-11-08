@@ -16,6 +16,12 @@ export class Post {
   slug: string;
 
   @Field({ nullable: true })
+  isLikedByCurrentUser: boolean;
+
+  @Field(() => Int)
+  likeCount: number;
+
+  @Field({ nullable: true })
   thumbnail: string;
 
   @Field()

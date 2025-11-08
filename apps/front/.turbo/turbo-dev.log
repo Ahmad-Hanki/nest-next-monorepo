@@ -16,120 +16,109 @@
    - Environments: .env
 
  ✓ Starting...
- ✓ Ready in 1401ms
-GraphQL Errors: [
-  {
-    message: '\n' +
-      'Invalid `this.prisma.post.count()` invocation in\n' +
-      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\post\\post.service.ts:14:24\n' +
-      '\n' +
-      '  11 \n' +
-      '  12 const [items, totalItems] = await Promise.all([\n' +
-      '  13   this.prisma.post.findMany({ skip, take }),\n' +
-      '→ 14   this.prisma.post.count(\n' +
-      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
-    locations: [ [Object] ],
-    path: [ 'posts' ],
-    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
+ ✓ Ready in 1815ms
+❌ GraphQL Error: fetch failed
+❌ GraphQL Error: fetch failed
+Error fetching current user: TypeError: fetch failed
+    at async (graphql\xior.ts:96:22)
+    at async RootLayout (app\layout.tsx:47:22)
+  94 |     const options = optionsString ? JSON.parse(optionsString) : undefined;
+  95 |
+> 96 |     const response = await graphqlApi.post(
+     |                      ^
+  97 |       "",
+  98 |       { query, variables },
+  99 |       { next: options } {
+  [cause]: Error: connect ECONNREFUSED ::1:8000
+      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
+    errno: -4078,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '::1',
+    port: 8000
   }
-]
- ⨯ Error: 
-Invalid `this.prisma.post.count()` invocation in
-C:\Users\LENOVO\Desktop\nest-next-blog\apps\api\src\post\post.service.ts:14:24
-
-  11 
-  12 const [items, totalItems] = await Promise.all([
-  13   this.prisma.post.findMany({ skip, take }),
-→ 14   this.prisma.post.count(
-Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'
-    at <unknown> (C:\Users\LENOVO\Desktop\nest-next-blog\apps\api\src\post\post.service.ts:14:24)
-    at <unknown> (graphql\xior.ts:104:13)
-    at async Home (app\page.tsx:14:21)
-  102 |     if (response.data.errors?.length) {
-  103 |       console.log("GraphQL Errors:", response.data.errors);
-> 104 |       throw new Error(response.data.errors[0].message);
-      |             ^
-  105 |     }
-  106 |
-  107 |     return response.data.data; {
-  digest: '85898825'
 }
- GET / 500 in 3.0s (compile: 2.4s, proxy.ts: 145ms, render: 505ms)
-GraphQL Errors: [
-  {
-    message: '\n' +
-      'Invalid `this.prisma.post.count()` invocation in\n' +
-      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\post\\post.service.ts:14:24\n' +
-      '\n' +
-      '  11 \n' +
-      '  12 const [items, totalItems] = await Promise.all([\n' +
-      '  13   this.prisma.post.findMany({ skip, take }),\n' +
-      '→ 14   this.prisma.post.count(\n' +
-      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
-    locations: [ [Object] ],
-    path: [ 'posts' ],
-    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
+ ⨯ TypeError: fetch failed
+    at async (graphql\xior.ts:96:22)
+    at async PostDetailPage (app\blog\[slug]\[id]\page.tsx:14:20)
+  94 |     const options = optionsString ? JSON.parse(optionsString) : undefined;
+  95 |
+> 96 |     const response = await graphqlApi.post(
+     |                      ^
+  97 |       "",
+  98 |       { query, variables },
+  99 |       { next: options } {
+  digest: '3655146578',
+  [cause]: Error: connect ECONNREFUSED ::1:8000
+      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
+    errno: -4078,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '::1',
+    port: 8000
   }
-]
- ⨯ Error: 
-Invalid `this.prisma.post.count()` invocation in
-C:\Users\LENOVO\Desktop\nest-next-blog\apps\api\src\post\post.service.ts:14:24
-
-  11 
-  12 const [items, totalItems] = await Promise.all([
-  13   this.prisma.post.findMany({ skip, take }),
-→ 14   this.prisma.post.count(
-Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'
-    at <unknown> (C:\Users\LENOVO\Desktop\nest-next-blog\apps\api\src\post\post.service.ts:14:24)
-    at <unknown> (graphql\xior.ts:104:13)
-    at async Home (app\page.tsx:14:21)
-  102 |     if (response.data.errors?.length) {
-  103 |       console.log("GraphQL Errors:", response.data.errors);
-> 104 |       throw new Error(response.data.errors[0].message);
-      |             ^
-  105 |     }
-  106 |
-  107 |     return response.data.data; {
-  digest: '85898825'
 }
- GET / 500 in 138ms (compile: 6ms, proxy.ts: 15ms, render: 117ms)
-GraphQL Errors: [
-  {
-    message: '\n' +
-      'Invalid `this.prisma.post.count()` invocation in\n' +
-      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\post\\post.service.ts:14:24\n' +
-      '\n' +
-      '  11 \n' +
-      '  12 const [items, totalItems] = await Promise.all([\n' +
-      '  13   this.prisma.post.findMany({ skip, take }),\n' +
-      '→ 14   this.prisma.post.count(\n' +
-      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
-    locations: [ [Object] ],
-    path: [ 'posts' ],
-    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
+ ⨯ TypeError: err.includes is not a function
+    at RootLayout (app\layout.tsx:60:27)
+  58 |     } catch (err) {
+  59 |       console.log("Error fetching current user:", err);
+> 60 |       if ((err as string).includes("Data not found")) {
+     |                           ^
+  61 |         console.log("User not found, showing refresh token component");
+  62 |         content = <RefreshAccessToken />;
+  63 |       } {
+  digest: '4179989121'
+}
+ GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 500 in 3.4s (compile: 3.0s, proxy.ts: 127ms, render: 295ms)
+TypeError: fetch failed
+    at ignore-listed frames {
+  [cause]: Error: connect ECONNREFUSED ::1:8000
+      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
+    errno: -4078,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '::1',
+    port: 8000
   }
-]
- ⨯ Error: 
-Invalid `this.prisma.post.count()` invocation in
-C:\Users\LENOVO\Desktop\nest-next-blog\apps\api\src\post\post.service.ts:14:24
-
-  11 
-  12 const [items, totalItems] = await Promise.all([
-  13   this.prisma.post.findMany({ skip, take }),
-→ 14   this.prisma.post.count(
-Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'
-    at <unknown> (C:\Users\LENOVO\Desktop\nest-next-blog\apps\api\src\post\post.service.ts:14:24)
-    at <unknown> (graphql\xior.ts:104:13)
-    at async Home (app\page.tsx:14:21)
-  102 |     if (response.data.errors?.length) {
-  103 |       console.log("GraphQL Errors:", response.data.errors);
-> 104 |       throw new Error(response.data.errors[0].message);
-      |             ^
-  105 |     }
-  106 |
-  107 |     return response.data.data; {
-  digest: '85898825'
 }
- GET / 500 in 151ms (compile: 5ms, proxy.ts: 12ms, render: 134ms)
- GET /blog 404 in 933ms (compile: 824ms, proxy.ts: 20ms, render: 89ms)
- GET /blog 404 in 128ms (compile: 13ms, proxy.ts: 24ms, render: 91ms)
+ GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 522ms (compile: 19ms, proxy.ts: 13ms, render: 489ms)
+ GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 154ms (compile: 15ms, proxy.ts: 11ms, render: 127ms)
+TypeError: fetch failed
+    at ignore-listed frames {
+  [cause]: Error: connect ECONNREFUSED ::1:8000
+      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
+    errno: -4078,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '::1',
+    port: 8000
+  }
+}
+TypeError: fetch failed
+    at ignore-listed frames {
+  [cause]: Error: connect ECONNREFUSED ::1:8000
+      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
+    errno: -4078,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '::1',
+    port: 8000
+  }
+}
+ GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 215ms (compile: 21ms, proxy.ts: 13ms, render: 181ms)
+ GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 168ms (compile: 15ms, proxy.ts: 21ms, render: 132ms)
+ GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 161ms (compile: 14ms, proxy.ts: 13ms, render: 133ms)
+ GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 278ms (compile: 139ms, proxy.ts: 17ms, render: 121ms)
+ GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 292ms (compile: 134ms, proxy.ts: 14ms, render: 145ms)
+ ✓ Compiled in 100ms
+ GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 267ms (compile: 131ms, proxy.ts: 22ms, render: 114ms)
+ ✓ Compiled in 64ms
+ GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 274ms (compile: 144ms, proxy.ts: 30ms, render: 100ms)
+"revalidateTag" without the second argument is now deprecated, add second argument of "max" or use "updateTag". See more info here: https://nextjs.org/docs/messages/revalidate-tag-single-arg
+ POST /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 1160ms (compile: 16ms, proxy.ts: 18ms, render: 1126ms)
+"revalidateTag" without the second argument is now deprecated, add second argument of "max" or use "updateTag". See more info here: https://nextjs.org/docs/messages/revalidate-tag-single-arg
+ POST /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 952ms (compile: 13ms, proxy.ts: 20ms, render: 919ms)
+ ✓ Compiled in 66ms
+ GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 219ms (compile: 113ms, proxy.ts: 10ms, render: 96ms)
+ GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 275ms (compile: 145ms, proxy.ts: 14ms, render: 116ms)
+"revalidateTag" without the second argument is now deprecated, add second argument of "max" or use "updateTag". See more info here: https://nextjs.org/docs/messages/revalidate-tag-single-arg

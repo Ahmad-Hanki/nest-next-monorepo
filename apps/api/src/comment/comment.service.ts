@@ -80,8 +80,10 @@ export class CommentService {
 
     where.OR = orConditions;
 
-    return await this.prisma.comment.deleteMany({
+    await this.prisma.comment.deleteMany({
       where,
     });
+
+    return true;
   }
 }

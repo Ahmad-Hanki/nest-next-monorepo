@@ -13,13 +13,13 @@ import {
   useMeQuery,
 } from "@/graphql/generated/react-query";
 import { cn } from "@/lib/utils";
-import { QueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 const AddComment = ({ className }: { className?: string }) => {
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState("");
   const { data: user } = useMeQuery();
@@ -29,10 +29,10 @@ const AddComment = ({ className }: { className?: string }) => {
   const { mutate, isPending } = useCreateCommentMutation({
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: useCommentsQuery.getKey({ postId: +id }),
+        queryKey: useCommentsQuery.getKey({ postId: +id, page: 1 }),
       });
-      setOpen(false);
       toast.success("Comment added successfully");
+      setOpen(false);
     },
     onError: (err) => {
       setError(err.message || "Something went wrong");

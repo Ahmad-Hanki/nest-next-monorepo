@@ -54,6 +54,8 @@ type Post {
   id: Int!
   title: String!
   slug: String
+  isLikedByCurrentUser: Boolean
+  likeCount: Int!
   thumbnail: String
   content: String!
   published: Boolean!
@@ -95,7 +97,8 @@ type Mutation {
   signIn(signInInput: SignInInput!): User!
   refreshToken(token: String!): String!
   createComment(postId: Int!, createCommentInput: CreateCommentInput!): Comment!
-  deleteComment(id: Int!): Comment!
+  deleteComment(id: Int!): Boolean!
+  toggleLike(createLikeInput: CreateLikeInput!): Boolean!
 }
 
 input CreateUserInput {
@@ -113,4 +116,8 @@ input SignInInput {
 
 input CreateCommentInput {
   content: String!
+}
+
+input CreateLikeInput {
+  postId: Int!
 }

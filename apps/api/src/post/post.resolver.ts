@@ -5,6 +5,9 @@ import { Post } from './entities/post.entity';
 import { PaginatedPosts } from 'src/common/pagination/pagination-types';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth/jwt-auth.guard';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
+import { User } from 'src/user/entities/user.entity';
+import { JwtService } from '@nestjs/jwt';
 
 @Resolver(() => Post)
 export class PostResolver {
@@ -21,9 +24,23 @@ export class PostResolver {
   }
   // @Roles('admin')
   // @UseGuards(JwtAuthGuard, RolesGuard)
-  @UseGuards(JwtAuthGuard)
+
   @Query(() => Post, { name: 'post' })
-  getPostById(@Args('id', { type: () => Int }) id: number) {
-    return this.postService.findOne(id);
+  async getPostById(
+    @Args('id', { type: () => Int }) id: number,
+    @Context() context: any, // access raw request
+  ) {
+    let user;
+    const authHeader = context.req.headers['authorization'];
+    if (authHeader?.startsWith('Bearer ')) {
+      const token = authHeader.split(' ')[1];
+      try {
+        user = new JwtService({ secret: process.env.JWT_SECRET }).verify(token);
+      } catch {
+        user = undefined; // invalid token, just ignore
+      }
+    }
+
+    return this.postService.findOne({ id, user });
   }
 }

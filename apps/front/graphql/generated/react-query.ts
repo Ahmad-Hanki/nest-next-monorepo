@@ -33,6 +33,10 @@ export type CreateCommentInput = {
   content: Scalars['String']['input'];
 };
 
+export type CreateLikeInput = {
+  postId: Scalars['Int']['input'];
+};
+
 export type CreateUserInput = {
   avatar?: InputMaybe<Scalars['String']['input']>;
   bio?: InputMaybe<Scalars['String']['input']>;
@@ -54,9 +58,10 @@ export type Mutation = {
   __typename?: 'Mutation';
   createComment: Comment;
   createUser: User;
-  deleteComment: Comment;
+  deleteComment: Scalars['Boolean']['output'];
   refreshToken: Scalars['String']['output'];
   signIn: User;
+  toggleLike: Scalars['Boolean']['output'];
 };
 
 
@@ -83,6 +88,11 @@ export type MutationRefreshTokenArgs = {
 
 export type MutationSignInArgs = {
   signInInput: SignInInput;
+};
+
+
+export type MutationToggleLikeArgs = {
+  createLikeInput: CreateLikeInput;
 };
 
 export type PaginatedComments = {
@@ -113,6 +123,8 @@ export type Post = {
   content: Scalars['String']['output'];
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['Int']['output'];
+  isLikedByCurrentUser?: Maybe<Scalars['Boolean']['output']>;
+  likeCount: Scalars['Int']['output'];
   likes?: Maybe<Array<Maybe<Like>>>;
   published: Scalars['Boolean']['output'];
   slug?: Maybe<Scalars['String']['output']>;
@@ -213,7 +225,7 @@ export type DeleteCommentMutationVariables = Exact<{
 }>;
 
 
-export type DeleteCommentMutation = { __typename?: 'Mutation', deleteComment: { __typename?: 'Comment', id: number } };
+export type DeleteCommentMutation = { __typename?: 'Mutation', deleteComment: boolean };
 
 export type RefreshTokenMutationVariables = Exact<{
   token: Scalars['String']['input'];
@@ -228,6 +240,13 @@ export type SignInMutationVariables = Exact<{
 
 
 export type SignInMutation = { __typename?: 'Mutation', signIn: { __typename?: 'User', accessToken?: string | null, id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any, role: Role } };
+
+export type ToggleLikeMutationVariables = Exact<{
+  createLikeInput: CreateLikeInput;
+}>;
+
+
+export type ToggleLikeMutation = { __typename?: 'Mutation', toggleLike: boolean };
 
 export type CommentsQueryVariables = Exact<{
   postId: Scalars['Int']['input'];
@@ -249,7 +268,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', id: number, title: string, slug?: string | null, thumbnail?: string | null, content: string, published: boolean, createdAt: any, updatedAt: any, author: { __typename?: 'User', id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any, role: Role }, tags?: Array<{ __typename?: 'Tag', id: number, name: string } | null> | null, comments?: Array<{ __typename?: 'Comment', id: number, content: string, createdAt: any, updatedAt: any } | null> | null, likes?: Array<{ __typename?: 'Like', id: number } | null> | null } };
+export type PostQuery = { __typename?: 'Query', post: { __typename?: 'Post', likeCount: number, isLikedByCurrentUser?: boolean | null, id: number, title: string, slug?: string | null, thumbnail?: string | null, content: string, published: boolean, createdAt: any, updatedAt: any, author: { __typename?: 'User', id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any, role: Role }, tags?: Array<{ __typename?: 'Tag', id: number, name: string } | null> | null, comments?: Array<{ __typename?: 'Comment', id: number, content: string, createdAt: any, updatedAt: any } | null> | null, likes?: Array<{ __typename?: 'Like', id: number } | null> | null } };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -354,9 +373,7 @@ export const useCreateUserMutation = <
 
 export const DeleteCommentDocument = `
     mutation DeleteComment($deleteCommentId: Int!) {
-  deleteComment(id: $deleteCommentId) {
-    id
-  }
+  deleteComment(id: $deleteCommentId)
 }
     `;
 
@@ -410,6 +427,25 @@ export const useSignInMutation = <
       {
     mutationKey: ['SignIn'],
     mutationFn: (variables?: SignInMutationVariables) => reactQueryFetcher<SignInMutation, SignInMutationVariables>(SignInDocument, variables)(),
+    ...options
+  }
+    )};
+
+export const ToggleLikeDocument = `
+    mutation ToggleLike($createLikeInput: CreateLikeInput!) {
+  toggleLike(createLikeInput: $createLikeInput)
+}
+    `;
+
+export const useToggleLikeMutation = <
+      TError = XiorError,
+      TContext = unknown
+    >(options?: UseMutationOptions<ToggleLikeMutation, TError, ToggleLikeMutationVariables, TContext>) => {
+    
+    return useMutation<ToggleLikeMutation, TError, ToggleLikeMutationVariables, TContext>(
+      {
+    mutationKey: ['ToggleLike'],
+    mutationFn: (variables?: ToggleLikeMutationVariables) => reactQueryFetcher<ToggleLikeMutation, ToggleLikeMutationVariables>(ToggleLikeDocument, variables)(),
     ...options
   }
     )};
@@ -488,6 +524,8 @@ export const PostDocument = `
     query Post($postId: Int!) {
   post(id: $postId) {
     ...Post
+    likeCount
+    isLikedByCurrentUser
     author {
       ...User
     }

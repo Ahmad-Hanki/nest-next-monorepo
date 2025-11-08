@@ -36,7 +36,7 @@ export class CommentResolver {
     });
   }
 
-  @Mutation(() => Comment)
+  @Mutation(() => Boolean)
   @UseGuards(JwtAuthGuard)
   deleteComment(
     @CurrentUser() user: User,

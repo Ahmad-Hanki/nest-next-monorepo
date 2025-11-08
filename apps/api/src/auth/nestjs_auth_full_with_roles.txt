@@ -316,6 +316,10 @@ me(@CurrentUser() user) {
 }
 ```
 
+
+16) implemented the optional auth guard
+apps\api\src\auth\guards\jwt-auth\optional-jwt-auth-guard.guard.ts
+
 ---
 
 ### 11) Logout / revoke refresh token
@@ -365,6 +369,8 @@ import { PrismaService } from './prisma.service';
 export class PrismaModule {}
 ```
 
+
+
 ---
 
 ### 14) Frontend (Next.js) integration summary
@@ -393,6 +399,8 @@ export class PrismaModule {}
 - Rotate refresh tokens on every refresh.
 - On logout, clear refresh token in DB AND clear cookies in client.
 - Normalize role names and consider using an enum.
+
+
 
 ---
 

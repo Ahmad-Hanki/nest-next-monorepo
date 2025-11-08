@@ -56,7 +56,9 @@ export default async function RootLayout({
         queryClient.setQueryData(["Me"], { me });
       }
     } catch (err) {
-      if (err instanceof XiorError && err.response?.status === 401) {
+      console.log("Error fetching current user:", err);
+      if ((err as string).includes("Data not found")) {
+        console.log("User not found, showing refresh token component");
         content = <RefreshAccessToken />;
       }
     }

@@ -1,6 +1,7 @@
 import { sdk } from "@/graphql/sdk";
 import Image from "next/image";
 import SanitizedContent from "./_components/SanitizedContent";
+import { Comments } from "./_components/comments";
 
 const PostDetailPage = async ({
   params,
@@ -31,8 +32,8 @@ const PostDetailPage = async ({
 
       <SanitizedContent content={post.content} />
 
-      {/*    <Like postId={post.id} user={session?.user} />
-      <Comments user={session?.user} postId={post.id} /> */}
+      {/*    <Like postId={post.id} user={session?.user} /> */}
+      <Comments />
     </main>
   );
 };

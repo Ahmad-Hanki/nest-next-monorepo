@@ -18,12 +18,16 @@ export type Scalars = {
 
 export type Comment = {
   __typename?: 'Comment';
-  author: User;
+  author?: Maybe<User>;
   content: Scalars['String']['output'];
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['Int']['output'];
   post: Post;
   updatedAt: Scalars['DateTime']['output'];
+};
+
+export type CreateCommentInput = {
+  content: Scalars['String']['input'];
 };
 
 export type CreateUserInput = {
@@ -45,9 +49,16 @@ export type Like = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createComment: Comment;
   createUser: User;
   refreshToken: Scalars['String']['output'];
   signIn: User;
+};
+
+
+export type MutationCreateCommentArgs = {
+  createCommentInput: CreateCommentInput;
+  postId: Scalars['Int']['input'];
 };
 
 
@@ -63,6 +74,12 @@ export type MutationRefreshTokenArgs = {
 
 export type MutationSignInArgs = {
   signInInput: SignInInput;
+};
+
+export type PaginatedComments = {
+  __typename?: 'PaginatedComments';
+  items: Array<Comment>;
+  pagination: PaginationMeta;
 };
 
 export type PaginatedPosts = {
@@ -98,9 +115,17 @@ export type Post = {
 
 export type Query = {
   __typename?: 'Query';
+  comments: PaginatedComments;
   me: User;
   post: Post;
   posts: PaginatedPosts;
+};
+
+
+export type QueryCommentsArgs = {
+  page?: InputMaybe<Scalars['Int']['input']>;
+  postId: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -159,6 +184,14 @@ export type LikeFragment = { __typename?: 'Like', id: number };
 
 export type PaginationMetaFragment = { __typename?: 'PaginationMeta', totalItems: number, totalPages: number, currentPage: number, nextPage?: number | null, previousPage?: number | null };
 
+export type CreateCommentMutationVariables = Exact<{
+  postId: Scalars['Int']['input'];
+  createCommentInput: CreateCommentInput;
+}>;
+
+
+export type CreateCommentMutation = { __typename?: 'Mutation', createComment: { __typename?: 'Comment', content: string, id: number } };
+
 export type CreateUserMutationVariables = Exact<{
   createUserInput: CreateUserInput;
 }>;
@@ -179,6 +212,14 @@ export type SignInMutationVariables = Exact<{
 
 
 export type SignInMutation = { __typename?: 'Mutation', signIn: { __typename?: 'User', accessToken?: string | null, id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any, role: Role } };
+
+export type CommentsQueryVariables = Exact<{
+  postId: Scalars['Int']['input'];
+  page?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type CommentsQuery = { __typename?: 'Query', comments: { __typename?: 'PaginatedComments', pagination: { __typename?: 'PaginationMeta', totalItems: number, totalPages: number, currentPage: number, nextPage?: number | null, previousPage?: number | null }, items: Array<{ __typename?: 'Comment', id: number, content: string, createdAt: any, updatedAt: any, author?: { __typename?: 'User', name: string, avatar?: string | null } | null }> } };
 
 export type PostsQueryVariables = Exact<{
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -250,6 +291,14 @@ export const PaginationMetaFragmentDoc = `
   previousPage
 }
     `;
+export const CreateCommentDocument = `
+    mutation CreateComment($postId: Int!, $createCommentInput: CreateCommentInput!) {
+  createComment(postId: $postId, createCommentInput: $createCommentInput) {
+    content
+    id
+  }
+}
+    `;
 export const CreateUserDocument = `
     mutation CreateUser($createUserInput: CreateUserInput!) {
   createUser(createUserInput: $createUserInput) {
@@ -271,6 +320,23 @@ export const SignInDocument = `
   }
 }
     ${UserFragmentDoc}`;
+export const CommentsDocument = `
+    query Comments($postId: Int!, $page: Int) {
+  comments(postId: $postId, page: $page) {
+    pagination {
+      ...PaginationMeta
+    }
+    items {
+      ...Comment
+      author {
+        name
+        avatar
+      }
+    }
+  }
+}
+    ${PaginationMetaFragmentDoc}
+${CommentFragmentDoc}`;
 export const PostsDocument = `
     query Posts($page: Int) {
   posts(page: $page) {
@@ -317,6 +383,9 @@ export const MeDocument = `
 export type Requester<C = {}> = <R, V>(doc: string, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C>(requester: Requester<C>) {
   return {
+    CreateComment(variables: CreateCommentMutationVariables, options?: C): Promise<CreateCommentMutation> {
+      return requester<CreateCommentMutation, CreateCommentMutationVariables>(CreateCommentDocument, variables, options) as Promise<CreateCommentMutation>;
+    },
     CreateUser(variables: CreateUserMutationVariables, options?: C): Promise<CreateUserMutation> {
       return requester<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument, variables, options) as Promise<CreateUserMutation>;
     },
@@ -325,6 +394,9 @@ export function getSdk<C>(requester: Requester<C>) {
     },
     SignIn(variables: SignInMutationVariables, options?: C): Promise<SignInMutation> {
       return requester<SignInMutation, SignInMutationVariables>(SignInDocument, variables, options) as Promise<SignInMutation>;
+    },
+    Comments(variables: CommentsQueryVariables, options?: C): Promise<CommentsQuery> {
+      return requester<CommentsQuery, CommentsQueryVariables>(CommentsDocument, variables, options) as Promise<CommentsQuery>;
     },
     Posts(variables?: PostsQueryVariables, options?: C): Promise<PostsQuery> {
       return requester<PostsQuery, PostsQueryVariables>(PostsDocument, variables, options) as Promise<PostsQuery>;

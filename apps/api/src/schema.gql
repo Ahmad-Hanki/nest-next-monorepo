@@ -31,7 +31,7 @@ type Comment {
   id: Int!
   content: String!
   post: Post!
-  author: User!
+  author: User
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -78,16 +78,23 @@ type PaginatedPosts {
   pagination: PaginationMeta!
 }
 
+type PaginatedComments {
+  items: [Comment!]!
+  pagination: PaginationMeta!
+}
+
 type Query {
   posts(page: Int, take: Int): PaginatedPosts!
   post(id: Int!): Post!
   me: User!
+  comments(postId: Int!, take: Int, page: Int): PaginatedComments!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   signIn(signInInput: SignInInput!): User!
   refreshToken(token: String!): String!
+  createComment(postId: Int!, createCommentInput: CreateCommentInput!): Comment!
 }
 
 input CreateUserInput {
@@ -101,4 +108,8 @@ input CreateUserInput {
 input SignInInput {
   email: String!
   password: String!
+}
+
+input CreateCommentInput {
+  content: String!
 }

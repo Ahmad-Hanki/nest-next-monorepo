@@ -1,0 +1,9 @@
+mutation CreateComment(
+  $postId: Int!
+  $createCommentInput: CreateCommentInput!
+) {
+  createComment(postId: $postId, createCommentInput: $createCommentInput) {
+    content
+    id
+  }
+}

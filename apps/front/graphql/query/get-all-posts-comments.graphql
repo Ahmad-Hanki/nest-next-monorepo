@@ -1,0 +1,14 @@
+query Comments($postId: Int!, $page: Int) {
+  comments(postId: $postId, page: $page) {
+    pagination {
+      ...PaginationMeta
+    }
+    items {
+      ...Comment
+      author {
+        name
+        avatar
+      }
+    }
+  }
+}

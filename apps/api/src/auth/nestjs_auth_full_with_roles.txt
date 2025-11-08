@@ -1,0 +1,409 @@
+# 🔐 Full JWT Authentication + Refresh Token + Role Guards (NestJS + GraphQL + Next.js)
+This document expands the previous note and **adds role-based guards** (e.g. ADMIN) and explains everything from scratch with concrete file names and code guidance. Save this as a reference or drop into your repo.
+
+---
+
+## ⚙️ Dependencies
+
+Install required packages:
+
+```bash
+npm i argon2 @nestjs/jwt @nestjs/passport passport passport-jwt @nestjs/config
+npm i -D @types/passport-jwt
+```
+
+---
+
+## Project-wide conventions
+- Backend app root: `apps/api/src/`
+- GraphQL resolvers, services in corresponding feature folders (`auth`, `user`, `post`, `comment`, etc.)
+- Prisma for database access: `PrismaService` in `apps/api/src/prisma/prisma.service.ts`
+- Frontend: Next.js app in `apps/front` or `app/` (Next App Router). Frontend cookie helpers in `lib/auth-cookies.ts`
+
+---
+
+# Step-by-step: JWT auth + refresh + roles
+
+---
+
+### 1) User registration (hash passwords)
+**File:** `apps/api/src/user/user.service.ts`
+
+Hash user password using `argon2` before creating user.
+
+```ts
+import { hash } from 'argon2';
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateUserInput } from './dto/create-user.input';
+
+@Injectable()
+export class UserService {
+  constructor(private prisma: PrismaService) {}
+
+  async create(createUserInput: CreateUserInput) {
+    const hashedPassword = await hash(createUserInput.password);
+    return this.prisma.user.create({
+      data: { ...createUserInput, password: hashedPassword },
+    });
+  }
+}
+```
+
+---
+
+### 2) Add `refreshToken` to Prisma User model
+**File:** `prisma/schema.prisma`
+
+```prisma
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  password     String
+  name         String?
+  role         String   @default("USER")
+  refreshToken String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+```
+
+Then run:
+
+```bash
+npx prisma migrate dev --name add_refresh_token_to_user
+```
+
+---
+
+### 3) Auth service: generate tokens, login, refresh
+**File:** `apps/api/src/auth/auth.service.ts`
+
+Responsibilities:
+- `validateLocalUser()` — checks email/password using argon2
+- `generateTokens(userId)` — signs `accessToken` and `refreshToken` and stores **hashed** refresh token in DB
+- `login(user)` — returns user + tokens
+- `refreshToken(oldAccessToken)` — decodes the old access token to get user id, verifies DB refresh token exists, rotates tokens
+
+Important security notes:
+- Hash refresh tokens in DB (use `argon2.hash`) and never return them to the client.
+- Rotate refresh token on each refresh (generate new refresh + store hashed).
+
+Example (trimmed):
+```ts
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { JwtService } from '@nestjs/jwt';
+import { hash } from 'argon2';
+
+@Injectable()
+export class AuthService {
+  constructor(private prisma: PrismaService, private jwtService: JwtService) {}
+
+  async generateTokens(userId: number) {
+    const payload = { sub: userId };
+    const accessToken = await this.jwtService.signAsync(payload, { expiresIn: '24h' });
+    const refreshToken = await this.jwtService.signAsync(payload, { expiresIn: '7d' });
+
+    await this.prisma.user.update({
+      where: { id: userId },
+      data: { refreshToken: await hash(refreshToken) },
+    });
+
+    return { accessToken, refreshToken };
+  }
+
+  async login(user) {
+    const tokens = await this.generateTokens(user.id);
+    return { ...user, ...tokens };
+  }
+
+  async refreshToken(oldAccessToken: string) {
+    const decoded = this.jwtService.decode(oldAccessToken) as { sub?: number } | null;
+    if (!decoded?.sub) throw new UnauthorizedException('Invalid token');
+
+    const user = await this.prisma.user.findUnique({ where: { id: decoded.sub } });
+    if (!user || !user.refreshToken) throw new UnauthorizedException('No refresh token');
+
+    const { accessToken, refreshToken } = await this.generateTokens(user.id);
+    return { accessToken, refreshToken };
+  }
+}
+```
+
+---
+
+### 4) Auth resolver
+**File:** `apps/api/src/auth/auth.resolver.ts`
+
+Expose GraphQL mutations:
+- `signIn(signInInput)` -> returns user + tokens
+- `refreshToken(token)` -> accepts **old access token** and returns new access token (or both tokens)
+
+```ts
+@Resolver()
+export class AuthResolver {
+  constructor(private authService: AuthService) {}
+
+  @Mutation(() => User)
+  async signIn(@Args('signInInput') signInInput: SignInInput) {
+    return this.authService.validateLocalUser(signInInput);
+  }
+
+  @Mutation(() => String)
+  async refreshToken(@Args('token') token: string) {
+    const { accessToken } = await this.authService.refreshToken(token);
+    return accessToken;
+  }
+}
+```
+
+---
+
+### 5) Jwt Strategy
+**File:** `apps/api/src/auth/strategies/jwt.strategy.ts`
+
+This is used by Passport to extract/verify JWT on protected routes.
+
+```ts
+import { Injectable } from '@nestjs/common';
+import { PassportStrategy } from '@nestjs/passport';
+import { Strategy, ExtractJwt } from 'passport-jwt';
+import { ConfigService } from '@nestjs/config';
+import { AuthService } from '../auth.service';
+
+@Injectable()
+export class JwtStrategy extends PassportStrategy(Strategy) {
+  constructor(configService: ConfigService, private authService: AuthService) {
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      secretOrKey: configService.get<string>('JWT_SECRET'),
+      ignoreExpiration: false,
+    });
+  }
+
+  async validate(payload: { sub: number }) {
+    const user = await this.authService.validateJwtUser(payload.sub);
+    return user; // e.g., { id, email, name, role }
+  }
+}
+```
+
+`validateJwtUser` should select only safe fields (not password, not refreshToken).
+
+---
+
+### 6) Jwt Auth Guard
+**File:** `apps/api/src/auth/guards/jwt-auth.guard.ts`
+
+Create the guard that plugs Passport JWT into GraphQL:
+
+```ts
+import { Injectable } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { GqlExecutionContext } from '@nestjs/graphql';
+
+@Injectable()
+export class JwtAuthGuard extends AuthGuard('jwt') {
+  getRequest(context: ExecutionContext) {
+    const ctx = GqlExecutionContext.create(context);
+    return ctx.getContext().req;
+  }
+}
+```
+
+---
+
+### 7) CurrentUser decorator
+**File:** `apps/api/src/auth/decorators/current-user.decorator.ts`
+
+Simplify reading `req.user`:
+
+```ts
+import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+import { GqlExecutionContext } from '@nestjs/graphql';
+
+export const CurrentUser = createParamDecorator((data: unknown, context: ExecutionContext) => {
+  const ctx = GqlExecutionContext.create(context);
+  return ctx.getContext().req.user;
+});
+```
+
+Usage: `@CurrentUser() user`
+
+---
+
+### 8) Roles metadata decorator
+**File:** `apps/api/src/auth/decorators/roles.decorator.ts`
+
+```ts
+import { SetMetadata } from '@nestjs/common';
+export const ROLES_KEY = 'roles';
+export const Roles = (...roles: string[]) => SetMetadata(ROLES_KEY, roles);
+```
+
+---
+
+### 9) RolesGuard implementation
+**File:** `apps/api/src/auth/guards/roles.guard.ts`
+
+```ts
+import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
+import { GqlExecutionContext } from '@nestjs/graphql';
+import { ROLES_KEY } from '../decorators/roles.decorator';
+
+@Injectable()
+export class RolesGuard implements CanActivate {
+  constructor(private reflector: Reflector) {}
+
+  canActivate(context: ExecutionContext): boolean {
+    const requiredRoles = this.reflector.getAllAndOverride<string[]>(ROLES_KEY, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+    if (!requiredRoles) return true;
+
+    const ctx = GqlExecutionContext.create(context);
+    const req = ctx.getContext().req;
+    const user = req.user;
+    if (!user) return false;
+    return requiredRoles.includes(user.role);
+  }
+}
+```
+
+**Note:** user.role should match the strings you use on `@Roles('ADMIN')` etc.
+
+---
+
+### 10) Using guards in resolvers (examples)
+
+**Admin-only:**
+```ts
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles('ADMIN')
+@Mutation(() => Boolean)
+async deleteUser(@Args('id', { type: () => Int }) id: number) {
+  return this.userService.delete(id);
+}
+```
+
+**Admin OR the user themself:**
+Handle this inside the resolver (recommended), not by the RolesGuard:
+
+```ts
+@UseGuards(JwtAuthGuard)
+@Mutation(() => User)
+async updateUser(
+  @CurrentUser() user,
+  @Args('id', { type: () => Int }) id: number,
+  @Args('updateUserInput') updateUserInput,
+) {
+  if (user.role !== 'ADMIN' && user.id !== id) {
+    throw new ForbiddenException('Not allowed');
+  }
+  return this.userService.update(id, updateUserInput);
+}
+```
+
+**Authenticated-only (any role):**
+```ts
+@UseGuards(JwtAuthGuard)
+@Query(() => Profile)
+me(@CurrentUser() user) {
+  return user;
+}
+```
+
+---
+
+### 11) Logout / revoke refresh token
+**File:** `apps/api/src/auth/auth.resolver.ts` (or a dedicated resolver)
+
+```ts
+@Mutation(() => Boolean)
+@UseGuards(JwtAuthGuard)
+async logout(@CurrentUser() user) {
+  await this.prisma.user.update({ where: { id: user.id }, data: { refreshToken: null } });
+  return true;
+}
+```
+
+Also clear cookies on client. This prevents a stolen refresh token from being useful.
+
+---
+
+### 12) AuthModule wiring
+**File:** `apps/api/src/auth/auth.module.ts`
+
+Make sure to **export** AuthService if other modules need it (e.g., social strategies):
+
+```ts
+@Module({
+  imports: [JwtModule.registerAsync({ /* config */ }), PrismaModule, ConfigModule],
+  providers: [AuthResolver, AuthService, JwtStrategy, JwtAuthGuard, RolesGuard],
+  exports: [AuthService],
+})
+export class AuthModule {}
+```
+
+---
+
+### 13) PrismaModule (provider)
+**File:** `apps/api/src/prisma/prisma.module.ts`
+
+```ts
+import { Module, Global } from '@nestjs/common';
+import { PrismaService } from './prisma.service';
+
+@Global()
+@Module({
+  providers: [PrismaService],
+  exports: [PrismaService],
+})
+export class PrismaModule {}
+```
+
+---
+
+### 14) Frontend (Next.js) integration summary
+
+**Cookie helpers:** `apps/front/src/lib/auth-cookies.ts` (client + server helpers)
+- `setAuthCookie(accessToken, role)` — client version uses `cookies-next` `setCookie`
+- `getAuthCookieClient()` — client read
+- `getAuthCookieServer()` — server read via `next/headers`
+
+**RefreshAccessToken component:** `components/refresh-token.tsx`
+- If server prefetch of `me` fails with 401, render this client component
+- It calls `sdk.RefreshToken({ token: cookie.accessToken })` (passes old access token)
+- Backend decodes old access token, checks DB refresh token, rotates tokens and returns new access token
+- Client stores new token and reloads
+
+**Prefetch user in `app/layout.tsx`**:
+- Create `QueryClient`, call `sdk.Me` server-side, set cache via `queryClient.setQueryData(['Me'], { me })`
+- Wrap children with `HydrationBoundary` + `QueryClientProvider` (ensure you actually provide the QueryClient on client side)
+
+---
+
+### 15) Security tips & reminders
+- Never return `password` or `refreshToken` in GraphQL responses.
+- Store refresh tokens hashed in DB.
+- Use `httpOnly` cookies for sensitive tokens if possible.
+- Rotate refresh tokens on every refresh.
+- On logout, clear refresh token in DB AND clear cookies in client.
+- Normalize role names and consider using an enum.
+
+---
+
+## ✅ Final notes
+
+This guide includes all steps to implement:
+- Local authentication (email/password)
+- JWT issuance (access + refresh)
+- Refresh token rotation + storage (hashed)
+- Role-based access via `RolesGuard`
+- "Admin OR self" checks implemented inside resolvers
+- Server + client cookie patterns for Next.js
+
+Save this file and use it as a checklist while implementing each piece.

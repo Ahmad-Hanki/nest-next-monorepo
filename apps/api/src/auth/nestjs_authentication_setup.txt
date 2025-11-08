@@ -123,10 +123,31 @@ Simplifies extracting user from the request.
 Usage:
 ```ts
 @UseGuards(JwtAuthGuard)
-updateUser(@CurrentUser() user: User) {
+updateUser(@CurrentUser() user: User) { // gets the users data from the token
   console.log(user.id);
 }
 ```
+@UseGuards(JwtAuthGuard, RolesGuard) // only admin access ////////////
+@Roles('ADMIN')
+---
+
+////////////////////////
+only for admin and users it selfs
+@UseGuards(JwtAuthGuard)
+@Mutation(() => User)
+async updateUser(
+  @CurrentUser() user: JwtPayload, // from token
+  @Args('id', { type: () => Int }) id: number,
+  @Args('updateUserInput') updateUserInput: UpdateUserInput,
+) {
+  // Only allow admins or the user themselves
+  if (user.role !== 'ADMIN' && user.id !== id) {
+    throw new ForbiddenException('You are not allowed to modify this user');
+  }
+
+  return this.userService.update(id, updateUserInput);
+}
+
 
 ---
 

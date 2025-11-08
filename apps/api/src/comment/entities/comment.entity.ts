@@ -13,11 +13,12 @@ export class Comment {
   @Field(() => Post)
   post: Post;
 
-  @Field(() => User)
+  @Field(() => User, { nullable: true })
   author: User;
 
   @Field(() => Date)
   createdAt: Date;
+  
 
   @Field(() => Date)
   updatedAt: Date;

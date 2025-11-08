@@ -8,7 +8,7 @@ export class CommentService {
   constructor(private readonly prisma: PrismaService) {}
   async getPostComments({
     postId,
-    take = 2,
+    take = 5,
     page = 1,
   }: {
     postId: number;
@@ -57,6 +57,31 @@ export class CommentService {
         postId,
         authorId: userId,
       },
+    });
+  }
+
+  async deleteComment({
+    commentId,
+    userId,
+    isAdmin,
+  }: {
+    commentId: number;
+    userId: number;
+    isAdmin: boolean;
+  }) {
+    // Base condition: the comment ID must match
+    const where: any = { id: commentId };
+
+    // Build OR conditions dynamically
+    const orConditions: any[] = [{ authorId: userId }];
+    if (isAdmin) {
+      orConditions.push({}); // Admin can delete any comment
+    }
+
+    where.OR = orConditions;
+
+    return await this.prisma.comment.deleteMany({
+      where,
     });
   }
 }

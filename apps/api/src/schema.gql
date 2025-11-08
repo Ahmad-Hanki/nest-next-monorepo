@@ -95,6 +95,7 @@ type Mutation {
   signIn(signInInput: SignInInput!): User!
   refreshToken(token: String!): String!
   createComment(postId: Int!, createCommentInput: CreateCommentInput!): Comment!
+  deleteComment(id: Int!): Comment!
 }
 
 input CreateUserInput {

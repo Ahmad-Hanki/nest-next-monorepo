@@ -4,7 +4,7 @@ import { Comment } from './entities/comment.entity';
 import { CreateCommentInput } from './dto/create-comment.input';
 import { UpdateCommentInput } from './dto/update-comment.input';
 import { PaginatedComments } from 'src/common/pagination/pagination-types';
-import { UseGuards } from '@nestjs/common';
+import { ForbiddenException, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth/jwt-auth.guard';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { User } from 'src/user/entities/user.entity';
@@ -33,6 +33,19 @@ export class CommentResolver {
       postId,
       userId: user.id,
       createCommentInput,
+    });
+  }
+
+  @Mutation(() => Comment)
+  @UseGuards(JwtAuthGuard)
+  deleteComment(
+    @CurrentUser() user: User,
+    @Args('id', { type: () => Int }) commentId: number,
+  ) {
+    return this.commentService.deleteComment({
+      commentId,
+      userId: user.id,
+      isAdmin: user.role == 'ADMIN',
     });
   }
 }

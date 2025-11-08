@@ -51,6 +51,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   createComment: Comment;
   createUser: User;
+  deleteComment: Comment;
   refreshToken: Scalars['String']['output'];
   signIn: User;
 };
@@ -64,6 +65,11 @@ export type MutationCreateCommentArgs = {
 
 export type MutationCreateUserArgs = {
   createUserInput: CreateUserInput;
+};
+
+
+export type MutationDeleteCommentArgs = {
+  id: Scalars['Int']['input'];
 };
 
 
@@ -199,6 +205,13 @@ export type CreateUserMutationVariables = Exact<{
 
 export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', accessToken?: string | null, id: number, name: string, email: string, bio?: string | null, avatar?: string | null, createdAt: any, role: Role } };
 
+export type DeleteCommentMutationVariables = Exact<{
+  deleteCommentId: Scalars['Int']['input'];
+}>;
+
+
+export type DeleteCommentMutation = { __typename?: 'Mutation', deleteComment: { __typename?: 'Comment', id: number } };
+
 export type RefreshTokenMutationVariables = Exact<{
   token: Scalars['String']['input'];
 }>;
@@ -219,7 +232,7 @@ export type CommentsQueryVariables = Exact<{
 }>;
 
 
-export type CommentsQuery = { __typename?: 'Query', comments: { __typename?: 'PaginatedComments', pagination: { __typename?: 'PaginationMeta', totalItems: number, totalPages: number, currentPage: number, nextPage?: number | null, previousPage?: number | null }, items: Array<{ __typename?: 'Comment', id: number, content: string, createdAt: any, updatedAt: any, author?: { __typename?: 'User', name: string, avatar?: string | null } | null }> } };
+export type CommentsQuery = { __typename?: 'Query', comments: { __typename?: 'PaginatedComments', pagination: { __typename?: 'PaginationMeta', totalItems: number, totalPages: number, currentPage: number, nextPage?: number | null, previousPage?: number | null }, items: Array<{ __typename?: 'Comment', id: number, content: string, createdAt: any, updatedAt: any, author?: { __typename?: 'User', name: string, avatar?: string | null, role: Role, id: number } | null }> } };
 
 export type PostsQueryVariables = Exact<{
   page?: InputMaybe<Scalars['Int']['input']>;
@@ -307,6 +320,13 @@ export const CreateUserDocument = `
   }
 }
     ${UserFragmentDoc}`;
+export const DeleteCommentDocument = `
+    mutation DeleteComment($deleteCommentId: Int!) {
+  deleteComment(id: $deleteCommentId) {
+    id
+  }
+}
+    `;
 export const RefreshTokenDocument = `
     mutation RefreshToken($token: String!) {
   refreshToken(token: $token)
@@ -331,6 +351,8 @@ export const CommentsDocument = `
       author {
         name
         avatar
+        role
+        id
       }
     }
   }
@@ -388,6 +410,9 @@ export function getSdk<C>(requester: Requester<C>) {
     },
     CreateUser(variables: CreateUserMutationVariables, options?: C): Promise<CreateUserMutation> {
       return requester<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument, variables, options) as Promise<CreateUserMutation>;
+    },
+    DeleteComment(variables: DeleteCommentMutationVariables, options?: C): Promise<DeleteCommentMutation> {
+      return requester<DeleteCommentMutation, DeleteCommentMutationVariables>(DeleteCommentDocument, variables, options) as Promise<DeleteCommentMutation>;
     },
     RefreshToken(variables: RefreshTokenMutationVariables, options?: C): Promise<RefreshTokenMutation> {
       return requester<RefreshTokenMutation, RefreshTokenMutationVariables>(RefreshTokenDocument, variables, options) as Promise<RefreshTokenMutation>;

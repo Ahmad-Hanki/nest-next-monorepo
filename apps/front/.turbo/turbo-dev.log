@@ -8,270 +8,128 @@
    See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
  Detected additional lockfiles: 
    * C:\Users\LENOVO\Desktop\nest-next-blog\apps\front\package-lock.json
-   ▲ Next.js 16.0.1 (Turbopack)
    * C:\Users\LENOVO\Desktop\nest-next-blog\package-lock.json
-   - Local:        http://localhost:3000
 
+   ▲ Next.js 16.0.1 (Turbopack)
+   - Local:        http://localhost:3000
    - Network:      http://192.168.1.103:3000
    - Environments: .env
 
  ✓ Starting...
- ✓ Ready in 1902ms
-TypeError: fetch failed
-    at ignore-listed frames {
-  [cause]: Error: connect ECONNREFUSED ::1:8000
-      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
-    errno: -4078,
-    code: 'ECONNREFUSED',
-    syscall: 'connect',
-    address: '::1',
-    port: 8000
+ ✓ Ready in 1401ms
+GraphQL Errors: [
+  {
+    message: '\n' +
+      'Invalid `this.prisma.post.count()` invocation in\n' +
+      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\post\\post.service.ts:14:24\n' +
+      '\n' +
+      '  11 \n' +
+      '  12 const [items, totalItems] = await Promise.all([\n' +
+      '  13   this.prisma.post.findMany({ skip, take }),\n' +
+      '→ 14   this.prisma.post.count(\n' +
+      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
+    locations: [ [Object] ],
+    path: [ 'posts' ],
+    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
   }
+]
+ ⨯ Error: 
+Invalid `this.prisma.post.count()` invocation in
+C:\Users\LENOVO\Desktop\nest-next-blog\apps\api\src\post\post.service.ts:14:24
+
+  11 
+  12 const [items, totalItems] = await Promise.all([
+  13   this.prisma.post.findMany({ skip, take }),
+→ 14   this.prisma.post.count(
+Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'
+    at <unknown> (C:\Users\LENOVO\Desktop\nest-next-blog\apps\api\src\post\post.service.ts:14:24)
+    at <unknown> (graphql\xior.ts:104:13)
+    at async Home (app\page.tsx:14:21)
+  102 |     if (response.data.errors?.length) {
+  103 |       console.log("GraphQL Errors:", response.data.errors);
+> 104 |       throw new Error(response.data.errors[0].message);
+      |             ^
+  105 |     }
+  106 |
+  107 |     return response.data.data; {
+  digest: '85898825'
 }
-TypeError: fetch failed
-    at ignore-listed frames {
-  [cause]: Error: connect ECONNREFUSED ::1:8000
-      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
-    errno: -4078,
-    code: 'ECONNREFUSED',
-    syscall: 'connect',
-    address: '::1',
-    port: 8000
+ GET / 500 in 3.0s (compile: 2.4s, proxy.ts: 145ms, render: 505ms)
+GraphQL Errors: [
+  {
+    message: '\n' +
+      'Invalid `this.prisma.post.count()` invocation in\n' +
+      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\post\\post.service.ts:14:24\n' +
+      '\n' +
+      '  11 \n' +
+      '  12 const [items, totalItems] = await Promise.all([\n' +
+      '  13   this.prisma.post.findMany({ skip, take }),\n' +
+      '→ 14   this.prisma.post.count(\n' +
+      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
+    locations: [ [Object] ],
+    path: [ 'posts' ],
+    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
   }
+]
+ ⨯ Error: 
+Invalid `this.prisma.post.count()` invocation in
+C:\Users\LENOVO\Desktop\nest-next-blog\apps\api\src\post\post.service.ts:14:24
+
+  11 
+  12 const [items, totalItems] = await Promise.all([
+  13   this.prisma.post.findMany({ skip, take }),
+→ 14   this.prisma.post.count(
+Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'
+    at <unknown> (C:\Users\LENOVO\Desktop\nest-next-blog\apps\api\src\post\post.service.ts:14:24)
+    at <unknown> (graphql\xior.ts:104:13)
+    at async Home (app\page.tsx:14:21)
+  102 |     if (response.data.errors?.length) {
+  103 |       console.log("GraphQL Errors:", response.data.errors);
+> 104 |       throw new Error(response.data.errors[0].message);
+      |             ^
+  105 |     }
+  106 |
+  107 |     return response.data.data; {
+  digest: '85898825'
 }
-TypeError: fetch failed
-    at ignore-listed frames {
-  [cause]: Error: connect ECONNREFUSED ::1:8000
-      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
-    errno: -4078,
-    code: 'ECONNREFUSED',
-    syscall: 'connect',
-    address: '::1',
-    port: 8000
+ GET / 500 in 138ms (compile: 6ms, proxy.ts: 15ms, render: 117ms)
+GraphQL Errors: [
+  {
+    message: '\n' +
+      'Invalid `this.prisma.post.count()` invocation in\n' +
+      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\post\\post.service.ts:14:24\n' +
+      '\n' +
+      '  11 \n' +
+      '  12 const [items, totalItems] = await Promise.all([\n' +
+      '  13   this.prisma.post.findMany({ skip, take }),\n' +
+      '→ 14   this.prisma.post.count(\n' +
+      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
+    locations: [ [Object] ],
+    path: [ 'posts' ],
+    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
   }
+]
+ ⨯ Error: 
+Invalid `this.prisma.post.count()` invocation in
+C:\Users\LENOVO\Desktop\nest-next-blog\apps\api\src\post\post.service.ts:14:24
+
+  11 
+  12 const [items, totalItems] = await Promise.all([
+  13   this.prisma.post.findMany({ skip, take }),
+→ 14   this.prisma.post.count(
+Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'
+    at <unknown> (C:\Users\LENOVO\Desktop\nest-next-blog\apps\api\src\post\post.service.ts:14:24)
+    at <unknown> (graphql\xior.ts:104:13)
+    at async Home (app\page.tsx:14:21)
+  102 |     if (response.data.errors?.length) {
+  103 |       console.log("GraphQL Errors:", response.data.errors);
+> 104 |       throw new Error(response.data.errors[0].message);
+      |             ^
+  105 |     }
+  106 |
+  107 |     return response.data.data; {
+  digest: '85898825'
 }
- GET /blog/caelestis-tondeo-combibo-strues-coniuratio-adeptio/2 200 in 4.8s (compile: 3.9s, proxy.ts: 200ms, render: 709ms)
- ✓ Compiled in 56ms
- GET /blog/caelestis-tondeo-combibo-strues-coniuratio-adeptio/2 200 in 223ms (compile: 85ms, proxy.ts: 16ms, render: 121ms)
- ✓ Compiled in 95ms
-GraphQL Errors: [
-  {
-    message: '\n' +
-      'Invalid `this.prisma.user.findUnique()` invocation in\n' +
-      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\auth\\auth.service.ts:54:41\n' +
-      '\n' +
-      '  51 \n' +
-      '  52 async validateJwtUser(userId: number) {\n' +
-      '  53   // Passport JWT validate callback\n' +
-      '→ 54   const user = await this.prisma.user.findUnique(\n' +
-      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
-    locations: [ [Object] ],
-    path: [ 'me' ],
-    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
-  }
-]
- GET /blog/caelestis-tondeo-combibo-strues-coniuratio-adeptio/2 200 in 188ms (compile: 86ms, proxy.ts: 16ms, render: 86ms)
- ⚠ Fast Refresh had to perform a full reload due to a runtime error.
- ✓ Compiled in 60ms
-GraphQL Errors: [
-  {
-    message: '\n' +
-      'Invalid `this.prisma.user.findUnique()` invocation in\n' +
-      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\auth\\auth.service.ts:54:41\n' +
-      '\n' +
-      '  51 \n' +
-      '  52 async validateJwtUser(userId: number) {\n' +
-      '  53   // Passport JWT validate callback\n' +
-      '→ 54   const user = await this.prisma.user.findUnique(\n' +
-      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
-    locations: [ [Object] ],
-    path: [ 'me' ],
-    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
-  }
-]
- GET /blog/caelestis-tondeo-combibo-strues-coniuratio-adeptio/2 200 in 347ms (compile: 78ms, proxy.ts: 14ms, render: 254ms)
- ✓ Compiled in 103ms
- ✓ Compiled in 100ms
- ✓ Compiled in 52ms
- ✓ Compiled in 58ms
- ✓ Compiled in 61ms
- ✓ Compiled in 99ms
- ✓ Compiled in 81ms
- ✓ Compiled in 102ms
- ✓ Compiled in 98ms
- ✓ Compiled in 55ms
- ✓ Compiled in 81ms
- ✓ Compiled in 60ms
-GraphQL Errors: [
-  {
-    message: '\n' +
-      'Invalid `this.prisma.user.findUnique()` invocation in\n' +
-      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\auth\\auth.service.ts:54:41\n' +
-      '\n' +
-      '  51 \n' +
-      '  52 async validateJwtUser(userId: number) {\n' +
-      '  53   // Passport JWT validate callback\n' +
-      '→ 54   const user = await this.prisma.user.findUnique(\n' +
-      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
-    locations: [ [Object] ],
-    path: [ 'me' ],
-    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
-  }
-]
- GET /blog/caelestis-tondeo-combibo-strues-coniuratio-adeptio/2 200 in 194ms (compile: 83ms, proxy.ts: 15ms, render: 97ms)
- ✓ Compiled in 64ms
- ✓ Compiled in 54ms
- ✓ Compiled in 55ms
-GraphQL Errors: [
-  {
-    message: '\n' +
-      'Invalid `this.prisma.user.findUnique()` invocation in\n' +
-      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\auth\\auth.service.ts:54:41\n' +
-      '\n' +
-      '  51 \n' +
-      '  52 async validateJwtUser(userId: number) {\n' +
-      '  53   // Passport JWT validate callback\n' +
-      '→ 54   const user = await this.prisma.user.findUnique(\n' +
-      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
-    locations: [ [Object] ],
-    path: [ 'me' ],
-    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
-  }
-]
- GET /blog/caelestis-tondeo-combibo-strues-coniuratio-adeptio/2 200 in 191ms (compile: 81ms, proxy.ts: 9ms, render: 100ms)
- ⚠ Fast Refresh had to perform a full reload due to a runtime error.
- ✓ Compiled in 58ms
-GraphQL Errors: [
-  {
-    message: '\n' +
-      'Invalid `this.prisma.user.findUnique()` invocation in\n' +
-      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\auth\\auth.service.ts:54:41\n' +
-      '\n' +
-      '  51 \n' +
-      '  52 async validateJwtUser(userId: number) {\n' +
-      '  53   // Passport JWT validate callback\n' +
-      '→ 54   const user = await this.prisma.user.findUnique(\n' +
-      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
-    locations: [ [Object] ],
-    path: [ 'me' ],
-    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
-  }
-]
- GET /blog/caelestis-tondeo-combibo-strues-coniuratio-adeptio/2 200 in 327ms (compile: 68ms, proxy.ts: 16ms, render: 243ms)
- ✓ Compiled in 72ms
- ✓ Compiled in 101ms
- ✓ Compiled in 93ms
- ✓ Compiled in 50ms
- ✓ Compiled in 88ms
- ✓ Compiled in 41ms
- ✓ Compiled in 80ms
- ✓ Compiled in 38ms
- ✓ Compiled in 100ms
- ✓ Compiled in 82ms
- ✓ Compiled in 68ms
- ✓ Compiled in 78ms
-GraphQL Errors: [
-  {
-    message: '\n' +
-      'Invalid `this.prisma.user.findUnique()` invocation in\n' +
-      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\auth\\auth.service.ts:54:41\n' +
-      '\n' +
-      '  51 \n' +
-      '  52 async validateJwtUser(userId: number) {\n' +
-      '  53   // Passport JWT validate callback\n' +
-      '→ 54   const user = await this.prisma.user.findUnique(\n' +
-      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
-    locations: [ [Object] ],
-    path: [ 'me' ],
-    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
-  }
-]
- GET /blog/caelestis-tondeo-combibo-strues-coniuratio-adeptio/2 200 in 159ms (compile: 87ms, proxy.ts: 7ms, render: 65ms)
- ✓ Compiled in 104ms
- ✓ Compiled in 83ms
-GraphQL Errors: [
-  {
-    message: '\n' +
-      'Invalid `this.prisma.user.findUnique()` invocation in\n' +
-      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\auth\\auth.service.ts:54:41\n' +
-      '\n' +
-      '  51 \n' +
-      '  52 async validateJwtUser(userId: number) {\n' +
-      '  53   // Passport JWT validate callback\n' +
-      '→ 54   const user = await this.prisma.user.findUnique(\n' +
-      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
-    locations: [ [Object] ],
-    path: [ 'me' ],
-    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
-  }
-]
- GET /blog/caelestis-tondeo-combibo-strues-coniuratio-adeptio/2 200 in 152ms (compile: 78ms, proxy.ts: 8ms, render: 66ms)
- ✓ Compiled in 85ms
- ✓ Compiled in 123ms
- ✓ Compiled in 63ms
- ✓ Compiled in 75ms
- ✓ Compiled in 78ms
-GraphQL Errors: [
-  {
-    message: '\n' +
-      'Invalid `this.prisma.user.findUnique()` invocation in\n' +
-      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\auth\\auth.service.ts:54:41\n' +
-      '\n' +
-      '  51 \n' +
-      '  52 async validateJwtUser(userId: number) {\n' +
-      '  53   // Passport JWT validate callback\n' +
-      '→ 54   const user = await this.prisma.user.findUnique(\n' +
-      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
-    locations: [ [Object] ],
-    path: [ 'me' ],
-    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
-  }
-]
- GET /blog/caelestis-tondeo-combibo-strues-coniuratio-adeptio/2 200 in 159ms (compile: 79ms, proxy.ts: 21ms, render: 59ms)
- ✓ Compiled in 60ms
- ✓ Compiled in 95ms
- ✓ Compiled in 84ms
- ✓ Compiled in 100ms
- ✓ Compiled in 65ms
- ✓ Compiled in 78ms
- ✓ Compiled in 81ms
- ✓ Compiled in 92ms
-GraphQL Errors: [
-  {
-    message: '\n' +
-      'Invalid `this.prisma.user.findUnique()` invocation in\n' +
-      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\auth\\auth.service.ts:54:41\n' +
-      '\n' +
-      '  51 \n' +
-      '  52 async validateJwtUser(userId: number) {\n' +
-      '  53   // Passport JWT validate callback\n' +
-      '→ 54   const user = await this.prisma.user.findUnique(\n' +
-      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
-    locations: [ [Object] ],
-    path: [ 'me' ],
-    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
-  }
-]
- GET /blog/caelestis-tondeo-combibo-strues-coniuratio-adeptio/2 200 in 170ms (compile: 83ms, proxy.ts: 23ms, render: 64ms)
- ✓ Compiled in 65ms
- ✓ Compiled in 41ms
- ✓ Compiled in 107ms
- ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-GraphQL Errors: [
-  {
-    message: '\n' +
-      'Invalid `this.prisma.user.findUnique()` invocation in\n' +
-      'C:\\Users\\LENOVO\\Desktop\\nest-next-blog\\apps\\api\\src\\auth\\auth.service.ts:54:41\n' +
-      '\n' +
-      '  51 \n' +
-      '  52 async validateJwtUser(userId: number) {\n' +
-      '  53   // Passport JWT validate callback\n' +
-      '→ 54   const user = await this.prisma.user.findUnique(\n' +
-      "Error in connector: Error querying the database: Server error: `ERROR 42000 (1226): User 'uaffh18dtoajt7lw' has exceeded the 'max_user_connections' resource (current value: 5)'",
-    locations: [ [Object] ],
-    path: [ 'me' ],
-    extensions: { code: 'INTERNAL_SERVER_ERROR', stacktrace: [Array] }
-  }
-]
- ✓ Compiled in 79ms
- GET /blog/caelestis-tondeo-combibo-strues-coniuratio-adeptio/2 200 in 487ms (compile: 83ms, proxy.ts: 18ms, render: 386ms)
+ GET / 500 in 151ms (compile: 5ms, proxy.ts: 12ms, render: 134ms)
+ GET /blog 404 in 933ms (compile: 824ms, proxy.ts: 20ms, render: 89ms)
+ GET /blog 404 in 128ms (compile: 13ms, proxy.ts: 24ms, render: 91ms)

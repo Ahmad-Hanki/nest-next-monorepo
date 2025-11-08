@@ -8,6 +8,8 @@ query Comments($postId: Int!, $page: Int) {
       author {
         name
         avatar
+        role
+        id
       }
     }
   }

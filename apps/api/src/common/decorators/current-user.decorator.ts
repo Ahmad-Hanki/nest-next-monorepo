@@ -9,3 +9,6 @@ export const CurrentUser = createParamDecorator(
     return request.user || undefined; // safe if no user
   },
 );
+
+
+// only gra`phql requests have user in request object

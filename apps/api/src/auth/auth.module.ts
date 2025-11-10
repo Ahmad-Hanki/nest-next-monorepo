@@ -29,6 +29,6 @@ import { AuthController } from './auth.controller';
     GoogleStrategy,
   ],
   exports: [AuthService],
-  controllers: [AuthController], // 👈 This line is IMPORTANT
+  controllers: [AuthController], // 👈 This line is IMPORTANT for google auth
 })
 export class AuthModule {}

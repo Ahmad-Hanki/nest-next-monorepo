@@ -320,21 +320,8 @@ me(@CurrentUser() user) {
 16) implemented the optional auth guard
 apps\api\src\auth\guards\jwt-auth\optional-jwt-auth-guard.guard.ts
 
----
 
-### 11) Logout / revoke refresh token
-**File:** `apps/api/src/auth/auth.resolver.ts` (or a dedicated resolver)
 
-```ts
-@Mutation(() => Boolean)
-@UseGuards(JwtAuthGuard)
-async logout(@CurrentUser() user) {
-  await this.prisma.user.update({ where: { id: user.id }, data: { refreshToken: null } });
-  return true;
-}
-```
-
-Also clear cookies on client. This prevents a stolen refresh token from being useful.
 
 ---
 

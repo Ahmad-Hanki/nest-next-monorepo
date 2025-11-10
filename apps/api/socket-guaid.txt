@@ -1,0 +1,19 @@
+npm i socket.io
+npm i @nestjs/platform-socket.io
+
+-- create this apps\api\src\common\socket
+
+// tracking function
+
+create apps\api\src\user\user.gateway.ts
+
+- nest g module presence
+- nest g service presence
+- nest g gateway presence
+
+apps\api\src\presence\presence.gateway.ts
+apps\api\src\presence\presence.service.ts
+
+now in the front
+
+npm install socket.io-client

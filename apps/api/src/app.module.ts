@@ -12,6 +12,7 @@ import { TagModule } from './tag/tag.module';
 import { LikeModule } from './like/like.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { PresenceModule } from './presence/presence.module';
 @Module({
   // graphql setup
   imports: [
@@ -31,6 +32,7 @@ import { ConfigModule } from '@nestjs/config';
     TagModule,
     LikeModule,
     AuthModule,
+    PresenceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

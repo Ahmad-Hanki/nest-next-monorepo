@@ -3,7 +3,7 @@
 > next dev
 
  ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
- We detected multiple lockfiles and selected the directory of C:\Users\LENOVO\package-lock.json as the root directory.
+ We detected multiple lockfiles and selected the directory of C:\Users\LENOVO\pnpm-lock.yaml as the root directory.
  To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
    See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
  Detected additional lockfiles: 
@@ -12,11 +12,139 @@
 
    ▲ Next.js 16.0.1 (Turbopack)
    - Local:        http://localhost:3000
-   - Network:      http://192.168.1.103:3000
+   - Network:      http://192.168.1.100:3000
    - Environments: .env
 
  ✓ Starting...
- ✓ Ready in 1815ms
+ ✓ Ready in 1213ms
+ GET / 200 in 3.7s (compile: 2.8s, proxy.ts: 162ms, render: 742ms)
+ GET / 200 in 217ms (compile: 17ms, proxy.ts: 18ms, render: 182ms)
+ GET / 200 in 215ms (compile: 15ms, proxy.ts: 19ms, render: 180ms)
+ ✓ Compiled in 100ms
+ ✓ Compiled in 79ms
+ GET / 200 in 359ms (compile: 90ms, proxy.ts: 17ms, render: 252ms)
+ GET / 200 in 125ms (compile: 6ms, proxy.ts: 23ms, render: 97ms)
+ ✓ Compiled in 55ms
+ ✓ Compiled in 95ms
+ ✓ Compiled in 55ms
+ GET / 200 in 169ms (compile: 61ms, proxy.ts: 23ms, render: 85ms)
+ ✓ Compiled in 101ms
+ ✓ Compiled in 100ms
+ ✓ Compiled in 76ms
+ ✓ Compiled in 82ms
+ ✓ Compiled in 61ms
+ ✓ Compiled in 41ms
+ ⨯ ReferenceError: UserNames is not defined
+    at Home (app\page.tsx:30:10)
+  28 |         <Hero />
+  29 |         <UsersOnline /> 
+> 30 |         <UserNames/>
+     |          ^
+  31 |         <PostsWrapper pagination={posts.pagination}>
+  32 |           <Posts posts={posts.items} />
+  33 |         </PostsWrapper> {
+  digest: '3820160741'
+}
+ GET / 200 in 183ms (compile: 75ms, proxy.ts: 16ms, render: 92ms)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 398ms (compile: 78ms, proxy.ts: 9ms, render: 311ms)
+ GET / 200 in 83ms (compile: 5ms, proxy.ts: 9ms, render: 69ms)
+ GET / 200 in 208ms (compile: 7ms, proxy.ts: 19ms, render: 182ms)
+ GET / 200 in 157ms (compile: 9ms, proxy.ts: 14ms, render: 134ms)
+ GET / 200 in 163ms (compile: 6ms, proxy.ts: 19ms, render: 138ms)
+TypeError: fetch failed
+    at ignore-listed frames {
+  [cause]: Error: connect ECONNREFUSED ::1:8000
+      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
+    errno: -4078,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '::1',
+    port: 8000
+  }
+}
+TypeError: fetch failed
+    at ignore-listed frames {
+  [cause]: Error: connect ECONNREFUSED ::1:8000
+      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
+    errno: -4078,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '::1',
+    port: 8000
+  }
+}
+ GET / 200 in 241ms (compile: 8ms, proxy.ts: 6ms, render: 226ms)
+TypeError: fetch failed
+    at ignore-listed frames {
+  [cause]: Error: connect ECONNREFUSED ::1:8000
+      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
+    errno: -4078,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '::1',
+    port: 8000
+  }
+}
+TypeError: fetch failed
+    at ignore-listed frames {
+  [cause]: Error: connect ECONNREFUSED ::1:8000
+      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
+    errno: -4078,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '::1',
+    port: 8000
+  }
+}
+ GET / 200 in 180ms (compile: 7ms, proxy.ts: 16ms, render: 158ms)
+TypeError: fetch failed
+    at ignore-listed frames {
+  [cause]: Error: connect ECONNREFUSED ::1:8000
+      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
+    errno: -4078,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '::1',
+    port: 8000
+  }
+}
+TypeError: fetch failed
+    at ignore-listed frames {
+  [cause]: Error: connect ECONNREFUSED ::1:8000
+      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
+    errno: -4078,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '::1',
+    port: 8000
+  }
+}
+ GET / 200 in 191ms (compile: 9ms, proxy.ts: 22ms, render: 160ms)
+ GET / 200 in 177ms (compile: 7ms, proxy.ts: 9ms, render: 161ms)
+ GET /auth/signin?redirect=%2Fblog%2Fsubvenio-urbs-qui%2F1 200 in 752ms (compile: 672ms, proxy.ts: 8ms, render: 73ms)
+ GET / 200 in 173ms (compile: 6ms, proxy.ts: 20ms, render: 147ms)
+ GET /auth/signin?redirect=%2Fblog%2Fcras-condico-conicio-tempore-animadverto-corrumpo-vis%2F2 200 in 40ms (compile: 5ms, proxy.ts: 11ms, render: 25ms)
+❌ GraphQL Error: fetch failed
+ ⨯ TypeError: fetch failed
+    at async (graphql\xior.ts:96:22)
+    at async PostDetailPage (app\blog\[slug]\[id]\page.tsx:14:20)
+  94 |     const options = optionsString ? JSON.parse(optionsString) : undefined;
+  95 |
+> 96 |     const response = await graphqlApi.post(
+     |                      ^
+  97 |       "",
+  98 |       { query, variables },
+  99 |       { next: options } {
+  digest: '3570506716',
+  [cause]: Error: read ECONNRESET
+      at ignore-listed frames {
+    errno: -4077,
+    code: 'ECONNRESET',
+    syscall: 'read'
+  }
+}
+ GET /blog/cras-condico-conicio-tempore-animadverto-corrumpo-vis/2 200 in 1969ms (compile: 1407ms, proxy.ts: 8ms, render: 554ms)
 ❌ GraphQL Error: fetch failed
 ❌ GraphQL Error: fetch failed
 Error fetching current user: TypeError: fetch failed
@@ -64,61 +192,3 @@ Error fetching current user: TypeError: fetch failed
   59 |       console.log("Error fetching current user:", err);
 > 60 |       if ((err as string).includes("Data not found")) {
      |                           ^
-  61 |         console.log("User not found, showing refresh token component");
-  62 |         content = <RefreshAccessToken />;
-  63 |       } {
-  digest: '4179989121'
-}
- GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 500 in 3.4s (compile: 3.0s, proxy.ts: 127ms, render: 295ms)
-TypeError: fetch failed
-    at ignore-listed frames {
-  [cause]: Error: connect ECONNREFUSED ::1:8000
-      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
-    errno: -4078,
-    code: 'ECONNREFUSED',
-    syscall: 'connect',
-    address: '::1',
-    port: 8000
-  }
-}
- GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 522ms (compile: 19ms, proxy.ts: 13ms, render: 489ms)
- GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 154ms (compile: 15ms, proxy.ts: 11ms, render: 127ms)
-TypeError: fetch failed
-    at ignore-listed frames {
-  [cause]: Error: connect ECONNREFUSED ::1:8000
-      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
-    errno: -4078,
-    code: 'ECONNREFUSED',
-    syscall: 'connect',
-    address: '::1',
-    port: 8000
-  }
-}
-TypeError: fetch failed
-    at ignore-listed frames {
-  [cause]: Error: connect ECONNREFUSED ::1:8000
-      at <unknown> (Error: connect ECONNREFUSED ::1:8000) {
-    errno: -4078,
-    code: 'ECONNREFUSED',
-    syscall: 'connect',
-    address: '::1',
-    port: 8000
-  }
-}
- GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 215ms (compile: 21ms, proxy.ts: 13ms, render: 181ms)
- GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 168ms (compile: 15ms, proxy.ts: 21ms, render: 132ms)
- GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 161ms (compile: 14ms, proxy.ts: 13ms, render: 133ms)
- GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 278ms (compile: 139ms, proxy.ts: 17ms, render: 121ms)
- GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 292ms (compile: 134ms, proxy.ts: 14ms, render: 145ms)
- ✓ Compiled in 100ms
- GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 267ms (compile: 131ms, proxy.ts: 22ms, render: 114ms)
- ✓ Compiled in 64ms
- GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 274ms (compile: 144ms, proxy.ts: 30ms, render: 100ms)
-"revalidateTag" without the second argument is now deprecated, add second argument of "max" or use "updateTag". See more info here: https://nextjs.org/docs/messages/revalidate-tag-single-arg
- POST /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 1160ms (compile: 16ms, proxy.ts: 18ms, render: 1126ms)
-"revalidateTag" without the second argument is now deprecated, add second argument of "max" or use "updateTag". See more info here: https://nextjs.org/docs/messages/revalidate-tag-single-arg
- POST /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 952ms (compile: 13ms, proxy.ts: 20ms, render: 919ms)
- ✓ Compiled in 66ms
- GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 219ms (compile: 113ms, proxy.ts: 10ms, render: 96ms)
- GET /blog/ver-audax-absconditus-agnitio-volubilis-aliquid/8 200 in 275ms (compile: 145ms, proxy.ts: 14ms, render: 116ms)
-"revalidateTag" without the second argument is now deprecated, add second argument of "max" or use "updateTag". See more info here: https://nextjs.org/docs/messages/revalidate-tag-single-arg
